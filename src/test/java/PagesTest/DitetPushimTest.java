@@ -6,6 +6,7 @@ import Pages.DokumentesSHConfigPage;
 import Utilities.BaseInformation;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -31,6 +32,11 @@ public class DitetPushimTest {
         System.out.println("Data: " + date + " | Ngjarja: " + event);
 
     page.klikoShtoDiteFestash();
-    page.
+    Assert.assertTrue(page.isShtimiFestaveTitleDispalyed(),"Nuk ka dale titulli akoma");
+    page.shtoFesta(date,event);
+    Assert.assertEquals(page.getData(),date,"Datat nuk jane njelloj. Prisnim : "+date+" Ishte: "+page.getData());
+    Assert.assertEquals(page.getEmeri(),event,"Festa nuk jane njelloj. Prisnim : "+event+" Ishte: "+page.getEmeri());
+    page.anulloShtimin();
+    driver.navigate().refresh();
     }
 }
