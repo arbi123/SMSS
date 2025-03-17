@@ -44,7 +44,7 @@ public class NjesitKonfigPage {
     public void clickEditButton(){
         page.editButton.click();
     }
-    public void editimNjesie(String njesiEmer,boolean inaktiv){
+    public void editimNjesie(String njesiEmer,boolean inaktiv) throws InterruptedException {
         page.emriUnitTB.clear();
         njesiEmeri=njesiEmer;
         inAktiv=inaktiv;
@@ -69,8 +69,11 @@ public class NjesitKonfigPage {
         searchbyValue(njesi);
         wait.until(ExpectedConditions.visibilityOf(page.deleteButton));
         page.deleteButton.click();
-        wait.until(ExpectedConditions.visibilityOf(page.deleteConfirmButton));
+
+    }
+    public void conifrmDeleteNjesi(){        wait.until(ExpectedConditions.visibilityOf(page.deleteConfirmButton));
         page.deleteConfirmButton.click();
+
     }
     public String getEmeriTable(){
         return page.emeriTable.getText();
@@ -88,6 +91,7 @@ public class NjesitKonfigPage {
         return page.editTitle.isDisplayed();
     }
     public boolean isFshirjaTitleDisplayed(){
+        wait.until(ExpectedConditions.visibilityOf(page.fshirjaTitle));
         return page.fshirjaTitle.isDisplayed();
     }
 }

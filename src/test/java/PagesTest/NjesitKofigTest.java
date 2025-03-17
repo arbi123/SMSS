@@ -49,15 +49,27 @@ public class NjesitKofigTest {
         Assert.assertEquals(page.getEditEmeri(),page.njesiEmeri,"Nuk jane emerat e njejte prisnim: "+page.njesiEmeri+" Na doli : "+page.getEditEmeri());
         Assert.assertEquals(page.isEditInaktivSelected(),page.inAktiv,"Prisnim qe butoni inaktiv te ishte : "+page.inAktiv+" Na doli: "+page.isEditInaktivSelected());
     page.editimNjesie("editTest"+Globals.generateRandom5DigitNumber(),true);
-        Assert.assertEquals(page.getEmeriTable(),page.njesiEmeri,"Nuk jane emerat te njejte");
+        page.searchbyValue(page.njesiEmeri);
+        Assert.assertEquals(page.getEmeriTable(),page.njesiEmeri,"Nuk jane emerat te njejte mbas editimit");
 
     }
     @Test(priority = 3)
     public void fshirjaENjesis() throws InterruptedException {
-      page.deleteNjesi(page.njesiEmeri);
-      page.de
+        page.deleteNjesi(page.njesiEmeri);
+     Assert.assertTrue(page.isFshirjaTitleDisplayed(),"Nuk ka dale titulli i fshirjes");
+     page.conifrmDeleteNjesi();
+     Assert.assertTrue(page.isSuccesNotificationDisplayed());
+    }
+    @Test
+    public void verifikimiTekInstitucionet(){
+        InstitucioniKofigPage page1= new InstitucioniKofigPage();
 
     }
+
+
+
+
+
     @AfterClass
     public void quit(){
         driver.quit();
