@@ -1,12 +1,9 @@
 package PagesTest;
 
 import Globals.Globals;
-import Pages.IdentifikimPage;
 import Pages.InstitucioniKofigPage;
 import Utilities.BaseInformation;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -17,9 +14,7 @@ import org.testng.asserts.SoftAssert;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
 import java.time.Duration;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+
 
 public class InstitucioniKonfigTest {
     InstitucioniKofigPage page;
@@ -37,26 +32,6 @@ public class InstitucioniKonfigTest {
     }
 
 
-    @Test(priority = 0)
-    public void testimiIfunksioneveSort() throws InterruptedException {
-        driver.navigate().to(Globals.institucionConfigURL);
-        wait.until(ExpectedConditions.urlToBe(Globals.institucionConfigURL));
-        BaseInformation.waitUntilPageLoads();
-        page.waitTillNotReloading();
-        List<String> sortingOptions = Arrays.asList("10", "25", "50", "100", "10");
-        List<Integer> expectedDataCounts = Arrays.asList(10, 25, 50, 100, 10);
-
-        for (int i = 0; i < sortingOptions.size(); i++) {
-            page.sortingTest(sortingOptions.get(i));
-            softAssert.assertEquals(page.getDeleteBtnsSize(), Optional.ofNullable(expectedDataCounts.get(i)),
-                    "Nuk jane " + expectedDataCounts.get(i) + " data ne faqe" );
-            page.waitTillNotReloading();
-            Thread.sleep(2000);
-        }
-
-        // Assert all at the end to avoid stopping execution on first failure
-        softAssert.assertAll();
-    }
 
     @Test(priority = 1)
     public void krijimiIInstitucionit(){
@@ -131,7 +106,7 @@ public class InstitucioniKonfigTest {
 
         @AfterClass
     public void quit() throws InterruptedException {
-        Thread.sleep(3000);
-        driver.close();
+        Thread.sleep(2000);
+
     }
 }

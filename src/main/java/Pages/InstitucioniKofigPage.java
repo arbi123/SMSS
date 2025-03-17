@@ -134,10 +134,13 @@ public class InstitucioniKofigPage {
         fundiShkr=str;
         page.fundiShkreses.sendKeys(str);
     }
-
-    public void shtoInstitucionin(){
+    public void shtoInstitucionButton(){
         page.shtoInstitucion.click();
         BaseInformation.waitForElementVisible(page.title);
+    }
+
+    public void shtoInstitucionin(){
+        shtoInstitucionButton();
         sendImg("C:\\Users\\Arbi.topi\\Downloads\\Folder\\photo.png");
         emertimiInstitucionit("test"+generateRandom5DigitNumber());
         setKodi("koditest");
@@ -175,13 +178,10 @@ public class InstitucioniKofigPage {
 
     public boolean isSuccesMessageDisplayed() {
         try {
-            // Wait for the success message to be visible
             WebElement successDiv = wait.until(ExpectedConditions.visibilityOf(page.succesDiv));
 
-            // Wait for 3 seconds (if needed for it to disappear)
             Thread.sleep(2000);
 
-            // Return true if still displayed after 3 seconds, otherwise false
             return successDiv.isDisplayed();
         } catch (Exception e) {
             return false;  // Return false if the message is not visible
@@ -334,6 +334,8 @@ public class InstitucioniKofigPage {
         pozicionTitull(pozicionTitull);
         radioButtons(kryesore, inaktive1, gjenerimTemplate);
         ruajButtoninMI();
+        BaseInformation.waitUntilPageLoads();
+        searchByValue(emeri);
     }
     public boolean isErrorDisplayed(){
         try {
