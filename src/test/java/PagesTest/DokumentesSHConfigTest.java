@@ -58,12 +58,15 @@ public class DokumentesSHConfigTest {
        page.ruajSherbimin();
 
     }
-    @Test
-    public void deleteSherbim(){
+    @Test(priority = 4)
+    public void deleteSherbim() throws InterruptedException {
         page.searchByValue(page.Sherbimi);
         page.deleteSherbimi();
-        Assert.assertTrue(page.isDeleteTitleDisplayed(),"Nuk ka dale boxi per ta konfirmuar Deleten ");
-        page.dele
+        Assert.assertTrue(page.isDeleteTitleDisplayed(),"Nuk ka dale boxi per ta konfirmuar Deleten");
+        page.konfirmDelete();
+        page.searchByValue(page.Sherbimi);
+        Assert.assertTrue(page.isTableEmpty(),"Ka akoma te dhena ,nuk jane fshire ose kane te njejtat emra+");
+
     }
 
     @AfterClass

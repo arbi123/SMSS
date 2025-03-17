@@ -117,6 +117,10 @@ public String getInstitucioniTable() throws InterruptedException {
     public boolean errorInstitucioniTB(){
         return page.institucionErrorTB.isDisplayed();
     }
+    public boolean isTableEmpty() throws InterruptedException {
+        Thread.sleep(500);
+        return page.sherbimiListTable.isEmpty() && page.insitucionetListTable.isEmpty();
+    }
 
 
 }
