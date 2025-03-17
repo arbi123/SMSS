@@ -50,7 +50,7 @@ public class DitetPushimPage {
     }
 
     public String getData(){
-        return page.dataEFestes.getAttribute("value");
+        return page.dataEFestes.getAttribute("value").replace("/",".");
     }
     public void anulloShtimin(){
         page.anulloShtimiFestave.click();

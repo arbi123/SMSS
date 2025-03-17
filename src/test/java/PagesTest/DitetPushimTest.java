@@ -7,6 +7,7 @@ import Utilities.BaseInformation;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -27,16 +28,24 @@ public class DitetPushimTest {
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         driver.navigate().to(Globals.DitetPushimUrl);
     }
-    @Test(dataProviderClass = DataProviders.ExcelDataProvider.class, dataProvider = "festatData")
+    @Test(priority = 1)
+    public void confirmButton(){
+        page.okDeshtimiListes();
+
+    }
+    @Test(dataProviderClass = DataProviders.ExcelDataProvider.class, dataProvider = "festatData",priority = 2)
     public void shtoDitetEFestave(String date, String event){
         System.out.println("Data: " + date + " | Ngjarja: " + event);
-
     page.klikoShtoDiteFestash();
     Assert.assertTrue(page.isShtimiFestaveTitleDispalyed(),"Nuk ka dale titulli akoma");
     page.shtoFesta(date,event);
     Assert.assertEquals(page.getData(),date,"Datat nuk jane njelloj. Prisnim : "+date+" Ishte: "+page.getData());
     Assert.assertEquals(page.getEmeri(),event,"Festa nuk jane njelloj. Prisnim : "+event+" Ishte: "+page.getEmeri());
     page.anulloShtimin();
-    driver.navigate().refresh();
+
+    }
+    @AfterClass
+    public void quit(){
+        driver.close();
     }
 }
