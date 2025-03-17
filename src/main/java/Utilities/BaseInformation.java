@@ -2,15 +2,14 @@ package Utilities;
 
 import Globals.Globals;
 import org.codehaus.plexus.util.FileUtils;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
@@ -24,7 +23,7 @@ import java.util.Map;
 public class BaseInformation {
 
     private static WebDriver driver;
-    private static WebDriverWait wait  =new WebDriverWait(driver, Duration.ofSeconds(30));;
+    private static WebDriverWait wait ;
 
 
     public static BaseInformation getBaseInformation() {
@@ -59,9 +58,10 @@ public class BaseInformation {
                     options.addArguments("--allow-running-insecure-content");
                     options.addArguments("--unsafely-treat-insecure-origin-as-secure=http://213.32.46.87:6070/");
                     options.setAcceptInsecureCerts(true);
-                    System.setProperty("webdriver.chrome.driver", "C:\\Users\\Arbi.topi\\IdeaProjects\\TesimTemp\\src\\main\\resources\\chromedriver.exe");
+                    System.setProperty("webdriver.chrome.driver", "C:\\Users\\Arbi.topi\\IdeaProjects\\TestimTemp\\src\\main\\resources\\chromedriver.exe");
                     driver = new ChromeDriver(options);
-                }
+                    driver.manage().window().maximize();
+                    wait = new WebDriverWait(driver, Duration.ofSeconds(10));                }
 
                 case "firefox" -> {
                     FirefoxOptions firefoxOptions = new FirefoxOptions();
@@ -113,4 +113,26 @@ public class BaseInformation {
         FileUtils.copyFile(source,file);
         return System.getProperty("user.dir")+"//reports//"+ timeStamp +".png";
     }
-}
+    public static void waitUntilElementVisible(By locator) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+    }
+
+    public static void waitUntilElementClickable(WebElement el) {
+        wait.until(ExpectedConditions.elementToBeClickable(el));
+    }
+    public static void waitUntilElementInvisible(By locator) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(300));
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
+    }
+    public static void waitForElementVisible(WebElement element) {
+        wait.until(ExpectedConditions.visibilityOf(element));
+    }
+    public static void waitUntilPageLoads() {
+        wait.until(driver -> ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete"));
+    }
+
+    public static String getPlaceholder(WebDriver driver, WebElement element) {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        return (String) js.executeScript("return arguments[0].getAttribute('placeholder')", element);
+    }
+    }
