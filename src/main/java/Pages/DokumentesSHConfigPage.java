@@ -60,14 +60,55 @@ public boolean isErrorDisplayed(){
         return page.errorAlert.isDisplayed();
 }
 
-public String getSherbimiTable(){
-        wait.until(ExpectedConditions.visibilityOf(page.sherbimiTable1));
+public String getSherbimiTable() throws InterruptedException {
+    Thread.sleep(500);
+    wait.until(ExpectedConditions.visibilityOf(page.sherbimiTable1));
         return page.sherbimiTable1.getText();
 }
 
-public String getInstitucioniTable(){
+public String getInstitucioniTable() throws InterruptedException {
         wait.until(ExpectedConditions.visibilityOf(page.insitucioniTable1));
         return page.insitucioniTable1.getText();
     }
+
+    public void deleteSherbimi(){
+        wait.until(ExpectedConditions.elementToBeClickable(page.deleteTable1));
+        page.deleteTable1.click();
+    }
+    public void clickEditSherbimi(){
+        wait.until(ExpectedConditions.elementToBeClickable(page.editTable1));
+        page.editTable1.click();
+    }
+    public void editAndFill(String sherbimi,String institucioni){
+        page.dshEmeriISherbimit.clear();
+        page.dshEmeriISherbimit.sendKeys(sherbimi);
+        Sherbimi=sherbimi;
+        page.dshInstitucioniDD.click();
+        wait.until(ExpectedConditions.visibilityOf(page.listaInstitucioneve.get(0)));
+        searchAndClick(institucioni);
+        Institucioni=institucioni;
+    }
+    public void editAndFillSherbimi(String sherbimi){
+        page.dshEmeriISherbimit.clear();
+        page.dshEmeriISherbimit.sendKeys(sherbimi);
+        Sherbimi=sherbimi;
+    }
+    public void editAndFillInstitucioni(String institucioni){
+        wait.until(ExpectedConditions.visibilityOf(page.listaInstitucioneve.get(0)));
+        searchAndClick(institucioni);
+        Institucioni=institucioni;
+    }
+
+       public void clearInstitucioni(){
+        wait.until(ExpectedConditions.elementToBeClickable(page.institucioniClearButton));
+        page.institucioniClearButton.click();
+       }
+    public boolean errorSherbimiTB(){
+        return page.sherbimiErrorTB.isDisplayed();
+    }
+    public boolean errorInstitucioniTB(){
+        return page.institucionErrorTB.isDisplayed();
+    }
+
 
 }

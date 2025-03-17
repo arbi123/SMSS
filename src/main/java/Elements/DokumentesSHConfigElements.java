@@ -29,7 +29,7 @@ public class DokumentesSHConfigElements {
     public WebElement dshtitulliShtimit;
     @FindBy(css = "#select2-institutionSelectAdd-container")
     public WebElement dshInstitucioniDD;
-//    @FindBy(css = "")
+    //    @FindBy(css = "")
     @FindBy(css = "#submitButton")
     public WebElement ruajButton;
     @FindBy(css = "tbody tr:nth-child(1) td:nth-child(2)")
@@ -51,5 +51,12 @@ public class DokumentesSHConfigElements {
     @FindBy(css = "tr td:nth-child(3)")
     public List<WebElement> insitucionetListTable;
 
+    @FindBy(css = "#errServiceAdd")
+    public WebElement sherbimiErrorTB;
+
+    @FindBy(css = "#errInstitutionNameAdd")
+    public WebElement institucionErrorTB;
+    @FindBy(css = "span[class=\"select2-selection__clear\"]")
+    public WebElement institucioniClearButton;
 
 }

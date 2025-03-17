@@ -32,20 +32,37 @@ public class DokumentesSHConfigTest {
     public void shtimiIDokumenteveShoqeruese() throws InterruptedException {
         wait.until(ExpectedConditions.urlToBe(Globals.KonfigurimiDokumenteveShoqeruese));
         Assert.assertEquals(driver.getCurrentUrl(),Globals.KonfigurimiDokumenteveShoqeruese);
-        page.shtoSherbimin("testt","Bashkia Maliq");// unique name cuz its required
+        page.shtoSherbimin("testt"+Globals.generateRandom5DigitNumber(),"Bashkia Maliq");// unique name cuz its required
         Assert.assertEquals(page.dshGetSherbimi(),page.Sherbimi,"Sherbimi nuk eshte i njejte me ate qe beme input");
         Assert.assertEquals(page.dshGetInstitucioni(),page.Institucioni,"Institucioni nuk eshte i njejte me ate qe beme input");
         page.ruajSherbimin();
         Assert.assertTrue(page.isSuccessMessageDisplayed(),"Nuk u krye saktesisht krijimi i sherbimit");
     }
     @Test(priority = 2)
-    public void kerkimiDheValidimiIKrijimitTe0Dokumentacionit(){
+    public void kerkimiDheValidimiIKrijimitTe0Dokumentacionit() throws InterruptedException {
     page.searchByValue(page.Sherbimi);
     Assert.assertEquals(page.getSherbimiTable(),page.Sherbimi,"Sherbimi nuk eshte i njejte si tek tabela e rezultateve mas kerkimit");
     Assert.assertEquals(page.getInstitucioniTable(),page.Institucioni,"Institucioni nuk eshte i njejte si tek tabela e rezultateve mas kerkimit");
     }
+    @Test(priority =3)
+    public void editimiISherbimit() {
+        page.clickEditSherbimi();
+        page.ruajSherbimin();
+        page.editAndFillSherbimi("");
+        Assert.assertTrue(page.errorSherbimiTB(),"Error nuk duhet ta Pranonte sherbimin bosh");
+        page.editAndFillSherbimi("Test"+Globals.generateRandom5DigitNumber());
+        page.clearInstitucioni();
+        page.ruajSherbimin();
+       Assert.assertTrue(page.errorInstitucioniTB(),"Nuk ka dale error mbasi kemi tentuar ta ruajm pa insittucion");
+       page.editAndFill("editedTest"+Globals.generateRandom5DigitNumber(),"Bashkia Maliq");
+       page.ruajSherbimin();
+
+    }
     @Test
     public void deleteSherbim(){
+        page.searchByValue(page.Sherbimi);
+
+
 
     }
 
