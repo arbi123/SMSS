@@ -68,6 +68,14 @@ public class DokumentesSHConfigTest {
         Assert.assertTrue(page.isTableEmpty(),"Ka akoma te dhena ,nuk jane fshire ose kane te njejtat emra+");
 
     }
+    @Test(priority = 5)
+    public void testimiMeInvalidData() throws InterruptedException {
+        String htmlAlert="<script>alert('M4rdukwasH3re')</script>";
+        driver.navigate().refresh();
+        page.shtoSherbimin(htmlAlert,"Bashkia Maliq");
+        page.ruajSherbimin();
+        Assert.assertTrue(page.errorSherbimiTB(),"Nuk doli errori pra e ka injektuar skriptin html");
+    }
 
     @AfterClass
     public void quit() throws InterruptedException {

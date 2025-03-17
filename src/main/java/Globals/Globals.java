@@ -9,6 +9,7 @@ public class Globals {
     public static String institucionConfigURL ="https://localhost:7166/InstitutionsConfigurations";
     public static String NjesitConfigURL ="https://localhost:7166/UnitConfigurations";
     public static String KonfigurimiDokumenteveShoqeruese = "https://localhost:7166/AccompanyingDocumentsConfigurations";
+    public static String DitetPushimUrl ="https://localhost:7166/HolidaysConfigurations";
 
 
     public static String generateRandom5DigitNumber() {
