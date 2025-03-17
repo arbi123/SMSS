@@ -22,6 +22,8 @@ public class NjesitKonfigElements {
     public  WebElement inaktivCB;
     @FindBy(css = "#savebuttonModifiko")
     public WebElement ruajButton;
+    @FindBy(css = "#modifyUnitLabel")
+    public WebElement editTitle;
     @FindBy(css = ".button.btn.btn-sm.btn-icon.editbutton")
     public WebElement editButton;
     @FindBy(css = ".button.btn.btn-sm.btn-danger.btn-icon")
