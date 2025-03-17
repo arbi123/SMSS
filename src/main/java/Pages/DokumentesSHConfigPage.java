@@ -44,8 +44,30 @@ public String dshGetSherbimi(){
     return  page.dshEmeriISherbimit.getAttribute("value");
 }
 public String dshGetInstitucioni(){
-        return page.dshInstitucioniDD.getAttribute("value");
+        return page.dshInstitucioniDD.getAttribute("title");
+}
+public void searchByValue(String value){
+        wait.until(ExpectedConditions.elementToBeClickable(page.searchBox));
+        page.searchBox.clear();
+        page.searchBox.sendKeys(value);
+        BaseInformation.waitUntilPageLoads();
+}
+public boolean isSuccessMessageDisplayed(){
+        wait.until(ExpectedConditions.visibilityOf(page.successAlert));
+       return page.successAlert.isDisplayed();
+}
+public boolean isErrorDisplayed(){
+        return page.errorAlert.isDisplayed();
 }
 
+public String getSherbimiTable(){
+        wait.until(ExpectedConditions.visibilityOf(page.sherbimiTable1));
+        return page.sherbimiTable1.getText();
+}
+
+public String getInstitucioniTable(){
+        wait.until(ExpectedConditions.visibilityOf(page.insitucioniTable1));
+        return page.insitucioniTable1.getText();
+    }
 
 }

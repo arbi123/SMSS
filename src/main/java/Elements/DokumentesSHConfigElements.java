@@ -29,6 +29,7 @@ public class DokumentesSHConfigElements {
     public WebElement dshtitulliShtimit;
     @FindBy(css = "#select2-institutionSelectAdd-container")
     public WebElement dshInstitucioniDD;
+//    @FindBy(css = "")
     @FindBy(css = "#submitButton")
     public WebElement ruajButton;
     @FindBy(css = "tbody tr:nth-child(1) td:nth-child(2)")

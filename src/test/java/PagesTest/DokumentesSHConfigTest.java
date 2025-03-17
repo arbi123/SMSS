@@ -28,17 +28,24 @@ public class DokumentesSHConfigTest {
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         driver.navigate().to(Globals.KonfigurimiDokumenteveShoqeruese);
     }
-    @Test
+    @Test(priority = 1)
     public void shtimiIDokumenteveShoqeruese() throws InterruptedException {
         wait.until(ExpectedConditions.urlToBe(Globals.KonfigurimiDokumenteveShoqeruese));
         Assert.assertEquals(driver.getCurrentUrl(),Globals.KonfigurimiDokumenteveShoqeruese);
-        page.shtoSherbimin("testt","Bashkia Maliq");
+        page.shtoSherbimin("testt","Bashkia Maliq");// unique name cuz its required
         Assert.assertEquals(page.dshGetSherbimi(),page.Sherbimi,"Sherbimi nuk eshte i njejte me ate qe beme input");
         Assert.assertEquals(page.dshGetInstitucioni(),page.Institucioni,"Institucioni nuk eshte i njejte me ate qe beme input");
         page.ruajSherbimin();
+        Assert.assertTrue(page.isSuccessMessageDisplayed(),"Nuk u krye saktesisht krijimi i sherbimit");
+    }
+    @Test(priority = 2)
+    public void kerkimiDheValidimiIKrijimitTe0Dokumentacionit(){
+    page.searchByValue(page.Sherbimi);
+    Assert.assertEquals(page.getSherbimiTable(),page.Sherbimi,"Sherbimi nuk eshte i njejte si tek tabela e rezultateve mas kerkimit");
+    Assert.assertEquals(page.getInstitucioniTable(),page.Institucioni,"Institucioni nuk eshte i njejte si tek tabela e rezultateve mas kerkimit");
     }
     @Test
-    public void kerkimiDheValidimiIKrijimitTe0Dokumentacionit(){
+    public void deleteSherbim(){
 
     }
 
