@@ -61,9 +61,9 @@ public class DokumentesSHConfigTest {
     @Test
     public void deleteSherbim(){
         page.searchByValue(page.Sherbimi);
-
-
-
+        page.deleteSherbimi();
+        Assert.assertTrue(page.isDeleteTitleDisplayed(),"Nuk ka dale boxi per ta konfirmuar Deleten ");
+        page.dele
     }
 
     @AfterClass

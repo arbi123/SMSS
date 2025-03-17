@@ -75,9 +75,17 @@ public String getInstitucioniTable() throws InterruptedException {
         wait.until(ExpectedConditions.elementToBeClickable(page.deleteTable1));
         page.deleteTable1.click();
     }
+    public void konfirmDelete(){
+        wait.until(ExpectedConditions.elementToBeClickable(page.confirmDelete));
+        page.confirmDelete.click();
+    }
     public void clickEditSherbimi(){
         wait.until(ExpectedConditions.elementToBeClickable(page.editTable1));
         page.editTable1.click();
+    }
+    public boolean isDeleteTitleDisplayed(){
+        wait.until(ExpectedConditions.visibilityOf(page.deleteTitle));
+        return page.deleteTitle.isDisplayed();
     }
     public void editAndFill(String sherbimi,String institucioni){
         page.dshEmeriISherbimit.clear();

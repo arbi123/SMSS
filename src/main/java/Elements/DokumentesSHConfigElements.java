@@ -42,6 +42,8 @@ public class DokumentesSHConfigElements {
     public WebElement deleteTable1;
     @FindBy(css = "button[class=\"btn btn-danger bootbox-accept\"]")
     public WebElement confirmDelete;
+    @FindBy(css = "div[class=\"modal-dialog modal-dialog-centered\"] h5[class=\"modal-title\"]")
+    public WebElement deleteTitle;
     @FindBy(css = ".sn-notify.sn-notify-outline.sn-notify-success.sn-notify-autoclose.sn-notify-fade.sn-notify-fade-in")
     public WebElement successAlert;
     @FindBy(css = ".sn-notify.sn-notify-outline.sn-notify-error.sn-notify-autoclose.sn-notify-fade.sn-notify-fade-in")
