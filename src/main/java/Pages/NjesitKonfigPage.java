@@ -87,4 +87,7 @@ public class NjesitKonfigPage {
 
         return page.editTitle.isDisplayed();
     }
+    public boolean isFshirjaTitleDisplayed(){
+        return page.fshirjaTitle.isDisplayed();
+    }
 }

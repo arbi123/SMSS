@@ -30,6 +30,8 @@ public class NjesitKonfigElements {
     public WebElement deleteButton;//could be a list
     @FindBy(css = "button[class='btn btn-danger bootbox-accept']")
     public WebElement deleteConfirmButton;
+    @FindBy(css = "//h5[normalize-space()=\"Fshi njesinë\"]")
+    public WebElement fshirjaTitle;
     @FindBy(css = ".sn-notify.sn-notify-outline.sn-notify-success.sn-notify-autoclose.sn-notify-fade.sn-notify-fade-in")
     public WebElement succesNotification;
     @FindBy(css=".sn-notify.sn-notify-outline.sn-notify-error.sn-notify-autoclose.sn-notify-fade.sn-notify-fade-in")
