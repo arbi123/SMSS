@@ -34,9 +34,11 @@ public class PerdoruesConfigPage {
     public String institucion;
     public String njesia;
     public String rolet;
-    
+
+
 
     public void setEmail(String value){
+        wait.until(ExpectedConditions.elementToBeClickable(page.emailiUC));
         page.emailiUC.clear();
         page.emailiUC.sendKeys(value);
     }
@@ -127,6 +129,13 @@ public class PerdoruesConfigPage {
             }
         }
     }
+    public void shtimiInstitucionit(){
+        page.shtoInstitucion.click();
+    }
+
+    public boolean isTableDisplayed(){
+        return page.tableUC.isDisplayed()&&page.fshiInstitucionUC.getFirst().isDisplayed();
+    }
 
     public void selectRolet(String value) throws InterruptedException {
         Thread.sleep(500);
@@ -143,6 +152,51 @@ public class PerdoruesConfigPage {
         page.ruajPerdorues.click();
     }
 
+    public void fillForm(String email,
+                         String nid,
+                         String ditelindja,
+                         String emer,
+                         String mbimer,
+                         String atesi,
+                         String nrTel,
+                         String puna,
+                         String adresa,
+                         String koment,
+                         boolean inaktive,
+                         boolean DKN,
+                         String institucion,
+                         String njesia,
+                         String rolet) throws InterruptedException {
+        this.email = email;
+        this.nid = nid;
+        this.ditelindja = ditelindja;
+        this.emer = emer;
+        this.mbimer = mbimer;
+        this.atesi = atesi;
+        this.nrTel = nrTel;
+        this.puna = puna;
+        this.adresa = adresa;
+        this.koment = koment;
+        this.inaktive = inaktive;
+        this.DKN = DKN;
+        this.institucion = institucion;
+        this.njesia = njesia;
+        this.rolet = rolet;
 
+        setEmail(email);
+        setNID(nid);
+        setDitelindja(ditelindja);
+        setEmer(emer);
+        setMbimer(mbimer);
+        setAtesi(atesi);
+        setNrTel(nrTel);
+        setPuna(puna);
+        setAdresa(adresa);
+        setKoment(koment);
+        setCheckboxes(inaktive, DKN);
+        selectInstitucion(institucion);
+        selectNjesia(njesia);
+        selectRolet(rolet);
+    }
 
 }

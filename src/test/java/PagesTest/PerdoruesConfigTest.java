@@ -7,6 +7,7 @@ import Utilities.BaseInformation;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -36,16 +37,19 @@ public class PerdoruesConfigTest {
           page.setEmer("ArTest");
           page.setMbimer("MbTEST");
           page.setAtesi("FATHtest");
-          page.setNrTel("e3333333");
+          page.setNrTel("3333333");
           page.setPuna("Doktor");
           page.setAdresa("Tirane");
           page.setKoment("hello koment test");
           page.setCheckboxes(true,false);
           page.selectInstitucion("Bashkia Tiran");
           page.selectNjesia("Drejtoria");
-          page.selectRolet("Admin");
+          page.selectRolet("Administrator SHQD Kryesore");
 
+          page.shtimiInstitucionit();
+        Assert.assertTrue(page.isTableDisplayed(),"Nuk ka dale tabela e Institucionit mbas zgjedhjes se insititucionit dhe njesis dhe klikimit te + button");
 
+        page.ruajPerdorues();
     }
 
 

@@ -77,11 +77,10 @@ public class PerdoruesConfigElements{
     public WebElement konfirmoFshirjenTitle;
     @FindBy(css = "#addUserDocuments")
     public WebElement ruajPerdorues;
-
     @FindBy(xpath = "//span/span[1]/span/ul")
     public List<WebElement> rolet;
-
-
+    @FindBy(css = ".form-group.col-8.m-0")
+    public WebElement tableUC;
 
 
 
