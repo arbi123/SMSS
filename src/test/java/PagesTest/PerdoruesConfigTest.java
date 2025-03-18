@@ -51,6 +51,11 @@ public class PerdoruesConfigTest {
 
         page.ruajPerdorues();
     }
+    @Test
+    public void searchAndVerifyTableData(){
+    page.searchByEmailAndName();
+    Assert
+    }
 
 
 

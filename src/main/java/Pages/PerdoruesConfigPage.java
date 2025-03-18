@@ -199,4 +199,12 @@ public class PerdoruesConfigPage {
         selectRolet(rolet);
     }
 
+    public void searchByEmailAndName(){
+        wait.until(ExpectedConditions.visibilityOf(page.emailFileterTB));
+        page.emailFileterTB.clear();
+        page.emailFileterTB.sendKeys(email);
+        page.emeriFilterTB.clear();
+        page.emeriFilterTB.sendKeys(emer);
+        actions.sendKeys(Keys.ENTER).perform();
+    }
 }

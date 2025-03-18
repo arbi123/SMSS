@@ -16,7 +16,7 @@ public class PerdoruesConfigElements{
     }
     //Filtrat
     @FindBy(css = "#fullNameFilter")
-    public WebElement emriFilterTB;
+    public WebElement emeriFilterTB;
     @FindBy(css = "#emailFilter")
     public WebElement emailFileterTB;
     @FindBy(css ="#select2-institucioniListFilter-container" )
@@ -81,6 +81,14 @@ public class PerdoruesConfigElements{
     public List<WebElement> rolet;
     @FindBy(css = ".form-group.col-8.m-0")
     public WebElement tableUC;
+
+    //Table data after search
+    @FindBy(css = "td:nth-child(2)")
+    public WebElement emeriIPlote;
+    @FindBy(css = "td:nth-child(3)")
+    public WebElement insititucioniDheNjesia;
+    @FindBy(css = "td:nth-child(4)")
+    public WebElement NID;
 
 
 
