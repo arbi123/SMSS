@@ -2,6 +2,7 @@
 package Listeners;
 
 
+import PagesTest.AssertInfo;
 import Utilities.BaseInformation;
 import Utilities.ExtentReporterNG;
 import com.aventstack.extentreports.ExtentReports;
@@ -25,15 +26,13 @@ public class Listeners extends BaseInformation implements ITestListener {
     }
 
     @Override
-    public void onStart(ITestContext Result)
-    {
+    public void onStart(ITestContext context) {
+        // Log suite-level details such as OS and user info
+        extent.setSystemInfo("Operating System", System.getProperty("os.name"));
+        extent.setSystemInfo("User", System.getProperty("user.name"));
+        extent.setSystemInfo("Environment", "QA"); // or dynamically retrieve from BaseInformation if available
     }
 
-    @Override
-    public void onTestFailedButWithinSuccessPercentage(ITestResult Result)
-    {
-
-    }
 
     @Override
     public void onTestFailure(ITestResult Result)
@@ -60,21 +59,45 @@ public class Listeners extends BaseInformation implements ITestListener {
     }
 
     @Override
-    public void onTestStart(ITestResult Result)
-    {
-        test =extent.createTest(Result.getMethod().getMethodName());
+    public void onTestStart(ITestResult result) {
+        AssertInfo assertInfo = result.getMethod().getConstructorOrMethod().getMethod().getAnnotation(AssertInfo.class);
+        if (assertInfo != null) {
+            for (String info : assertInfo.value()) {
+                test.log(Status.INFO, "Assert Info: " + info);
+            }
+        }
+        test = extent.createTest(result.getMethod().getMethodName());
+        test.log(Status.INFO, "Starting test: " + result.getMethod().getMethodName());
+        test.log(Status.INFO, "Running on: " + System.getProperty("os.name"));
 
+        // Log test parameters if any exist
+        if (result.getParameters().length > 0) {
+            StringBuilder params = new StringBuilder("Parameters: ");
+            for (Object param : result.getParameters()) {
+                params.append(param).append(" ");
+            }
+            test.log(Status.INFO, params.toString().trim());
+        }
     }
 
     @Override
-    public void onTestSuccess(ITestResult Result)
-    {
-        test.log(Status.PASS,"Test passed sucesfully");
-        System.out.println("The name of the testcase passed is :"+Result.getName());
+    public void onTestSuccess(ITestResult result) {
+        test.log(Status.PASS, "Test passed successfully.");
+        test.log(Status.INFO, "Test finished: " + result.getMethod().getMethodName());
+        String filepath = null;
+        try {
+            filepath = getScreenShot();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        test.addScreenCaptureFromPath(filepath, result.getMethod().getMethodName());
+        System.out.println("The name of the testcase passed is: " + result.getName());
     }
 
     @Override
     public void onTestFailedWithTimeout(ITestResult result) {
-        ITestListener.super.onTestFailedWithTimeout(result);
+        onTestFailure(result);
     }
+
+
 }

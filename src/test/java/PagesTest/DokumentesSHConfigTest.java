@@ -2,9 +2,9 @@ package PagesTest;
 
 import Globals.Globals;
 import Pages.DokumentesSHConfigPage;
-import Pages.InstitucioniKofigPage;
-import Pages.NjesitKonfigPage;
 import Utilities.BaseInformation;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -45,7 +45,9 @@ public class DokumentesSHConfigTest {
     Assert.assertEquals(page.getSherbimiTable(),page.Sherbimi,"Sherbimi nuk eshte i njejte si tek tabela e rezultateve mas kerkimit");
     Assert.assertEquals(page.getInstitucioniTable(),page.Institucioni,"Institucioni nuk eshte i njejte si tek tabela e rezultateve mas kerkimit");
     }
+    ExtentTest test;
     @Test(priority =3)
+    @AssertInfo("S")
     public void editimiISherbimit() {
         page.clickEditSherbimi();
         page.ruajSherbimin();

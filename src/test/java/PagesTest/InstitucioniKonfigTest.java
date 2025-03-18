@@ -3,6 +3,8 @@ package PagesTest;
 import Globals.Globals;
 import Pages.InstitucioniKofigPage;
 import Utilities.BaseInformation;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -22,7 +24,6 @@ public class InstitucioniKonfigTest {
     SoftAssert softAssert = new SoftAssert();
     WebDriverWait wait;
 
-
     @BeforeClass
     public void setUp() {
         driver = BaseInformation.getDriver();
@@ -32,8 +33,8 @@ public class InstitucioniKonfigTest {
     }
 
 
-
     @Test(priority = 1)
+    @AssertInfo({"S","ssss"})
     public void krijimiIInstitucionit(){
         driver.navigate().to(Globals.institucionConfigURL);
         BaseInformation.waitUntilPageLoads();

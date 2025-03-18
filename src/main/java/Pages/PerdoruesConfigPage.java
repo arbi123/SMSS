@@ -12,4 +12,6 @@ public class PerdoruesConfigPage {
     WebDriverWait wait = new WebDriverWait(BaseInformation.getDriver(), Duration.ofSeconds(10));;
     PerdoruesConfigElements page= new PerdoruesConfigElements();
     Actions actions = new Actions(BaseInformation.getDriver());
+
+    public void
 }

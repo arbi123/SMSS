@@ -4,6 +4,9 @@ import Utilities.BaseInformation;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+imp
+
+import java.lang.invoke.CallSite;
 
 public class PerdoruesConfigElements{
 
@@ -22,7 +25,7 @@ public class PerdoruesConfigElements{
     @FindBy(css = "#select2-roleListFilter-container")
     public WebElement roletFiletDD;
     @FindBy(xpath = "//span//ul//li[contains(@class, 'select2-results')]")
-    public WebElement filetOptions;
+    public WebElement options;
 
 
     @FindBy(css = "button[class=\"btn btn-primary btn-icon rounded-circle mx-2 addUserDocuments\"]")
@@ -30,10 +33,48 @@ public class PerdoruesConfigElements{
     @FindBy(css = "#addUserConfigurationModal")
     public WebElement configPerdoruesBox;
     @FindBy(css = "#emailAdd")
-    public WebElement UCemailiTB;
+    public WebElement emailiUC;
     @FindBy(css = "#nidAdd")
     public WebElement NID_UC;
-    @FindBy(WebElement)
+    @FindBy(css = "#emriAdd")
+    public WebElement emeriUC;
+    @FindBy(css = "#komentAdd")
+    public WebElement komentUC;
+    @FindBy(css = "#nrTelAdd")
+    public WebElement nrTelUC;
+    @FindBy(css = "#jobPositionAdd")
+    public WebElement pozicioniPunesUC;
+    @FindBy(css = "#txtdatefrom")
+    public WebElement dataUC;
+    @FindBy(id = "atesiAdd")
+    public WebElement atesiUC;
+    @FindBy(id = "mbiemerAdd")
+    public WebElement mbiemerUC;
+    @FindBy(id = "adresaAdd")
+    public WebElement adresaUC;
+    @FindBy(css = "#select2-institucioniList-container")
+    public WebElement institucioniUC;
+    @FindBy(css = "#select2-njesiaList-container")
+    public WebElement  njesiaUC;
+    @FindBy(css = "#isActive")
+    public WebElement inaktiveUC;
+    @FindBy(css = "#sentRequest")
+    public WebElement dergonKerkeseUC;
+    @FindBy(css = "span[class='select2 select2-container select2-container--default select2-container--below select2-container--focus'] span[role='combobox']")
+    public WebElement roletUC;
+    @FindBy(css = "#showFileUpload")
+    public WebElement shikoDocUC;
+    @FindBy(css = "#fileUploadSpan")
+    public WebElement uploadFileUC;
+    @FindBy(css = "#addInstitution")
+    public WebElement shtoInstitucion;
+    @FindBy(css = "#removeInstitution")
+    public List<WebElement> fshiInstitucionUC;
+    @FindBy(css = "button[class='btn btn-danger bootbox-accept']")
+    public WebElement konfirmoFshirjenButton;
+    @FindBy(css = "div[class='modal-dialog modal-dialog-centered'] h5[class='modal-title']")
+    public WebElement konfirmoFshirjenTitle;
+
 
 
 
