@@ -19,6 +19,22 @@ public class PerdoruesConfigPage {
         wait.until(ExpectedConditions.elementToBeClickable(page.addUserConfigButton));
         page.addUserConfigButton.click();
     }
+    public String email;
+    public String nid;
+    public String ditelindja;
+    public String emer;
+    public String mbimer;
+    public String atesi;
+    public String nrTel;
+    public String puna;
+    public String adresa;
+    public String koment;
+    public boolean inaktive;
+    public boolean DKN;
+    public String institucion;
+    public String njesia;
+    public String rolet;
+    
 
     public void setEmail(String value){
         page.emailiUC.clear();
@@ -69,15 +85,24 @@ public class PerdoruesConfigPage {
             }
 
         }
+        if(!inaktive){
+            if(page.inaktiveUC.isSelected())
+            {page.inaktiveUC.click();
+            }}
         if(DKN){
             if(!page.dergonKerkeseUC.isSelected()){
                 page.dergonKerkeseUC.click();
             }
         }
+        if(!DKN){
+            if(page.dergonKerkeseUC.isSelected()){
+                page.dergonKerkeseUC.click();
+            }
+        }
     }
     public void  selectInstitucion(String value){
-        actions.scrollToElement(page.institucioniUC);
         wait.until(ExpectedConditions.visibilityOf(page.institucioniUC));
+        actions.scrollToElement(page.institucioniUC).perform();
 
         page.institucioniUC.click();
         wait.until(ExpectedConditions.visibilityOf(page.options.getFirst()));
@@ -90,7 +115,8 @@ public class PerdoruesConfigPage {
 
         }
     }
-    public void selectNjesia(String value){
+    public void selectNjesia(String value) throws InterruptedException {
+        Thread.sleep(500);
         wait.until(ExpectedConditions.elementToBeClickable(page.njesiaUC));
         page.njesiaUC.click();
         for(WebElement in : page.options){
@@ -102,8 +128,8 @@ public class PerdoruesConfigPage {
         }
     }
 
-    public void selectRolet(String value){
-
+    public void selectRolet(String value) throws InterruptedException {
+        Thread.sleep(500);
         page.rolet.getFirst().click();
         for(WebElement in : page.options){
             String text = in.getText();
@@ -112,6 +138,11 @@ public class PerdoruesConfigPage {
                 break;
             }
         }
-
     }
+    public void ruajPerdorues(){
+        page.ruajPerdorues.click();
+    }
+
+
+
 }

@@ -75,6 +75,8 @@ public class PerdoruesConfigElements{
     public WebElement konfirmoFshirjenButton;
     @FindBy(css = "div[class='modal-dialog modal-dialog-centered'] h5[class='modal-title']")
     public WebElement konfirmoFshirjenTitle;
+    @FindBy(css = "#addUserDocuments")
+    public WebElement ruajPerdorues;
 
     @FindBy(xpath = "//span/span[1]/span/ul")
     public List<WebElement> rolet;

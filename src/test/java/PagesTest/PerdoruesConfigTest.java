@@ -26,17 +26,33 @@ public class PerdoruesConfigTest {
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
     @Test
-    public void test(){
+    public void test() throws InterruptedException {
         driver.navigate().to(Globals.perdoruesConfigUrl);
         wait.until(ExpectedConditions.urlToBe(Globals.perdoruesConfigUrl));
           page.shtoPerorues();
+          page.setEmail("arbi@gmail.com");
+          page.setNID("A999999B");
+          page.setDitelindja("22/05/2002");
+          page.setEmer("ArTest");
+          page.setMbimer("MbTEST");
+          page.setAtesi("FATHtest");
+          page.setNrTel("e3333333");
+          page.setPuna("Doktor");
+          page.setAdresa("Tirane");
+          page.setKoment("hello koment test");
+          page.setCheckboxes(true,false);
           page.selectInstitucion("Bashkia Tiran");
           page.selectNjesia("Drejtoria");
           page.selectRolet("Admin");
 
+
     }
+
+
+
     @AfterClass
     public void quit(){
+//        driver.quit();
 
     }
 }
