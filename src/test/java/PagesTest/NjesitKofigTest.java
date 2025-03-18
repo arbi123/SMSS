@@ -30,7 +30,6 @@ public class NjesitKofigTest {
         driver = BaseInformation.getDriver();
         page=new NjesitKonfigPage();
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        driver.navigate().to(Globals.NjesitConfigURL);
     }
 
     @Test(priority = 1,groups = {"smoke", "regression"})
@@ -57,8 +56,7 @@ public class NjesitKofigTest {
     }
 
     @Test(priority = 3,groups = {"smoke"})
-    public void fshirjaENjesis() throws InterruptedException {
-        page.deleteNjesi(page.njesiEmeri);
+    public void fshirjaENjesis() throws InterruptedException {page.deleteNjesi(page.njesiEmeri);
      Assert.assertTrue(page.isFshirjaTitleDisplayed(),"Nuk ka dale titulli i fshirjes");
      page.conifrmDeleteNjesi();
      Assert.assertTrue(page.isSuccesNotificationDisplayed());
@@ -82,7 +80,7 @@ public class NjesitKofigTest {
     }
 
     @Test(priority = 5,groups = {"regression"})
-    public void testingNjesiaisCorrect() {
+    public void testingNjesiaisCorrectTekInstitucionet() {
         page1.clickFirstEditButton();
         Assert.assertEquals(page1.getEmeriMI(),institucioniEmer,"Nuk kan emertime te njejta");
         Assert.assertEquals(page1.njesiaMI(),page.njesiEmeri,"Njesite nuk jan te njejta mbasi krijimit ne Institucion");
@@ -92,7 +90,6 @@ public class NjesitKofigTest {
 
     @AfterClass
     public void quit(){
-        driver.close();
     }
 
 }

@@ -21,7 +21,7 @@ public class DitetPushimPage {
 
     public void okDeshtimiListes(){
         if(page.deshtimiListesOK.isDisplayed()){
-        page.deshtimiListesOK.click();}
+            page.deshtimiListesOK.click();}
     }
     public void klikoShtoDiteFestash(){
         wait.until(ExpectedConditions.visibilityOf(page.shtoFestaButton));

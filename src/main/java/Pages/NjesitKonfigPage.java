@@ -16,6 +16,7 @@ public class NjesitKonfigPage {
     public boolean inAktiv;
 
     public void searchbyValue(String value) throws InterruptedException {
+        Thread.sleep(1500);
         page.serachBox.clear();
         page.serachBox.sendKeys(value);
         Thread.sleep(1500);
@@ -47,6 +48,7 @@ public class NjesitKonfigPage {
         page.emriUnitTB.clear();
         njesiEmeri=njesiEmer;
         inAktiv=inaktiv;
+        page.emriUnitTB.clear();
         page.emriUnitTB.sendKeys(njesiEmer);
         if(isEditInaktivSelected()!=inaktiv){
             page.inaktivCB.click();

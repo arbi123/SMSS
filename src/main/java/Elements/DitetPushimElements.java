@@ -31,5 +31,10 @@ public class DitetPushimElements {
     public WebElement closeShtimiFestave;
     @FindBy(css = "button[data-i18n=\"cancel\"]")
     public WebElement anulloShtimiFestave;
-
+    @FindBy(css="tbody tr:nth-child(1) td:nth-child(3) div:nth-child(1) button:nth-child(1)")
+    public WebElement editFirstButton;
+    @FindBy(css = "tbody tr:nth-child(1) td:nth-child(3) div:nth-child(1) button:nth-child(1)")
+    public WebElement deleteFirstButton;
+    @FindBy(css = "tbody tr:nth-child(1) td")
+    public WebElement firstColumn;
 }

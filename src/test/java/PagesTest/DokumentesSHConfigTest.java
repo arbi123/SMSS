@@ -30,6 +30,7 @@ public class DokumentesSHConfigTest {
     }
     @Test(priority = 1)
     public void shtimiIDokumenteveShoqeruese() throws InterruptedException {
+        driver.navigate().to(Globals.KonfigurimiDokumenteveShoqeruese);
         wait.until(ExpectedConditions.urlToBe(Globals.KonfigurimiDokumenteveShoqeruese));
         Assert.assertEquals(driver.getCurrentUrl(),Globals.KonfigurimiDokumenteveShoqeruese);
         page.shtoSherbimin("testt"+Globals.generateRandom5DigitNumber(),"Bashkia Maliq");// unique name cuz its required

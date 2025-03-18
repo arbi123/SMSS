@@ -1,5 +1,6 @@
 package PagesTest;
 
+import Globals.Globals;
 import Pages.IdentifikimPage;
 import Utilities.BaseInformation;
 import org.openqa.selenium.WebDriver;
@@ -22,10 +23,10 @@ public class IdentifikimTest {
 
     @Test
     public void login() throws InterruptedException {
-        driver.get("https://localhost:7166/Login");
+        driver.get(Globals.loginUrl);
         page.validLogin();
         Thread.sleep(500);
-        Assert.assertEquals(driver.getCurrentUrl(),"https://localhost:7166/","Nuk navigoi tek url e duhur: "+driver.getCurrentUrl());
+        Assert.assertEquals(driver.getCurrentUrl(),Globals.homenUrl,"Nuk navigoi tek url e duhur: "+driver.getCurrentUrl());
 
     }
 

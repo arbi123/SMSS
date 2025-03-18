@@ -16,6 +16,11 @@
                     <include name="editimNjesie"/>
                     <include name="fshirjaENjesis"/>
             </methods></class>
+            <class name="PagesTest.DokumentesSHConfigTest">
+                <methods>
+                    <exclude name="setUp"></exclude>
+                </methods>
+            </class>
         </classes>
     </test>
 </suite>
