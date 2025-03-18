@@ -4,6 +4,8 @@ import Utilities.BaseInformation;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
+import java.time.temporal.WeekFields;
 import java.util.List;
 
 
@@ -86,9 +88,30 @@ public class PerdoruesConfigElements{
     @FindBy(css = "td:nth-child(2)")
     public WebElement emeriIPlote;
     @FindBy(css = "td:nth-child(3)")
-    public WebElement insititucioniDheNjesia;
+    public WebElement emailTable;
     @FindBy(css = "td:nth-child(4)")
+    public WebElement insititucioniDheNjesia;
+    @FindBy(css = "td:nth-child(5)")
     public WebElement NID;
+    @FindBy(css = "td:nth-child(6)")
+    public WebElement nrTelefon;
+    @FindBy(css = "td:nth-child(7)")
+    public WebElement roli;
+    @FindBy(css = "td:nth-child(8)")
+    public WebElement dataKrijimit;
+    @FindBy(css = "td:nth-child(9)")
+    public WebElement dataModifikimiFundit;
+    @FindBy(css = "td:nth-child(10) input")
+    public WebElement inaktiveCheckBoxTable;
+    @FindBy(css = "button[class='btn btn-sm btn-icon']")
+    public WebElement editButton;
+    @FindBy(css = "button[title='Fshi']")
+    public WebElement deleteButton;
+    @FindBy(css = "button[class='btn btn-danger bootbox-accept']")
+    public WebElement konfirmoDelete;
+    @FindBy(css = "#dropdownMenuButton")
+    public WebElement dropdownMenu;
+
 
 
 

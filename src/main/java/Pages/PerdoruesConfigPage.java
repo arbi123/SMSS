@@ -10,6 +10,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class PerdoruesConfigPage {
     WebDriverWait wait = new WebDriverWait(BaseInformation.getDriver(), Duration.ofSeconds(10));;
@@ -199,12 +201,72 @@ public class PerdoruesConfigPage {
         selectRolet(rolet);
     }
 
-    public void searchByEmailAndName(){
+    public void searchByEmailAndName() throws InterruptedException {
         wait.until(ExpectedConditions.visibilityOf(page.emailFileterTB));
         page.emailFileterTB.clear();
         page.emailFileterTB.sendKeys(email);
         page.emeriFilterTB.clear();
         page.emeriFilterTB.sendKeys(emer);
         actions.sendKeys(Keys.ENTER).perform();
+        Thread.sleep(500);
+
+    }
+    public String getEmeriIPloteTable() {
+        return page.emeriIPlote.getText();
+    }
+
+    public String getEmailTable() {
+        return page.emailTable.getText();
+    }
+
+    public String getInsititucioniDheNjesiaTable() {
+        return page.insititucioniDheNjesia.getText();
+    }
+
+    public String getNIDTable() {
+        return page.NID.getText();
+    }
+
+    public String getNrTelefonTable() {
+        return page.nrTelefon.getText();
+    }
+
+    public String getRoliTable() {
+        return page.roli.getText();
+    }
+
+    public String getDataKrijimitTable() {
+        return page.dataKrijimit.getText();
+    }
+
+    public String getDataModifikimiFunditTable() {
+        return page.dataModifikimiFundit.getText();
+    }
+
+    public boolean getInaktiveCheckBoxTable() {
+        return page.inaktiveCheckBoxTable.isSelected()&&!page.inaktiveCheckBoxTable.isEnabled();
+    }
+    public String getTodayDate(){
+        LocalDate today = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        return today.format(formatter);
+    }
+    public void editData(){
+   setEmer("");
+   setMbimer("");
+   setEmail("");
+   setNrTel("");
+   setCheckboxes(false,true);
+
+    }
+    public void clickEditButton(){
+        wait.until(ExpectedConditions.elementToBeClickable(page.editButton));
+        page.editButton.click();
+    }
+    public void fshiPerdorues(){
+        wait.until(ExpectedConditions.elementToBeClickable(page.deleteButton));
+        page.deleteButton.click();
+        wait.until(ExpectedConditions.elementToBeClickable(page.konfirmoDelete));
+        page.konfirmoDelete.click();
     }
 }
