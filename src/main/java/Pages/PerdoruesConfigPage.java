@@ -161,6 +161,7 @@ public class PerdoruesConfigPage {
         }
     }
     public void ruajPerdorues(){
+        wait.until(ExpectedConditions.elementToBeClickable(page.ruajPerdorues));
         page.ruajPerdorues.click();
     }
 
@@ -212,6 +213,7 @@ public class PerdoruesConfigPage {
     }
 
     public void searchByEmailAndName() throws InterruptedException {
+        Thread.sleep(500);
         wait.until(ExpectedConditions.visibilityOf(page.emailFileterTB));
         page.emailFileterTB.clear();
         page.emailFileterTB.sendKeys(email);
@@ -302,7 +304,8 @@ public class PerdoruesConfigPage {
         wait.until(ExpectedConditions.elementToBeClickable(page.konfirmoDelete));
         page.konfirmoDelete.click();
     }
-    public boolean emptyDataTitleIsDisplayed(){
+    public boolean emptyDataTitleIsDisplayed() throws InterruptedException {
+        Thread.sleep(1000);
         return page.emptyData.isDisplayed();
     }
 }

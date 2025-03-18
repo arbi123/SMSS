@@ -32,7 +32,7 @@ public class PerdoruesConfigTest {
         softAssert = new SoftAssert();
     }
     @Test(priority = 1)
-    public void test() throws InterruptedException {
+    public void KrijimiPerdoruesiKonfig() throws InterruptedException {
         driver.navigate().to(Globals.perdoruesConfigUrl);
         wait.until(ExpectedConditions.urlToBe(Globals.perdoruesConfigUrl));
           page.shtoPerorues();
@@ -54,7 +54,7 @@ public class PerdoruesConfigTest {
         softAssert.assertTrue(page.getInsititucioniDheNjesiaTable().contains(page.institucion), "Institucioni nuk u gjet në tabelë!");
         softAssert.assertTrue(page.getInsititucioniDheNjesiaTable().contains(page.njesia), "Njësia nuk u gjet në tabelë!");
         softAssert.assertEquals(page.getNIDTable(), page.nid, "NID nuk përputhet!");
-      //  softAssert.assertEquals(page.getNrTelefonTable(), page.nrTel, "Numri i telefonit nuk përputhet!");
+        softAssert.assertEquals(page.getNrTelefonTable(), page.nrTel, "Numri i telefonit nuk përputhet!");
         softAssert.assertEquals(page.getRoliTable(), page.rolet, "Roli nuk përputhet!");
         softAssert.assertEquals(page.getDataKrijimitTable(), page.getTodayDate(), "Data e krijimit nuk përputhet!");
         softAssert.assertEquals(page.getInaktiveCheckBoxTable(),page.inaktive,"Nuk jan te njejta checkBoxi Inaktiv");
@@ -80,10 +80,13 @@ public class PerdoruesConfigTest {
         softAssert.assertEquals(page.getRoliTable(), page.rolet, "Roli nuk përputhet! Mbas editimi");
         softAssert.assertEquals(page.getDataKrijimitTable(), page.getTodayDate(), "Data e krijimit nuk përputhet! Mbas editimi");
         softAssert.assertEquals(page.getInaktiveCheckBoxTable(),page.inaktive,"Nuk jan te njejta checkBoxi Inaktiv Mbas editimi");
+        softAssert.assertEquals(page.getDataModifikimiFunditTable(),page.getTodayDate(),"Data modifikimit nuk eshte njelloj me sot");
         softAssert.assertAll();
     }
     @Test(priority = 5)
+    @AssertInfo({"Fshirja e Datave te editurar","Ne fund provojm te kerkojme neqoftese nuk jane fshire akoma"})
     public void deleteData() throws InterruptedException {
+        page.searchByEmailAndName();
         page.fshiPerdorues();
         page.searchByEmailAndName();
         Assert.assertTrue(page.emptyDataTitleIsDisplayed(),"Ka akoma data me te njejtin emer dhe email");
@@ -93,7 +96,6 @@ public class PerdoruesConfigTest {
 
     @AfterClass
     public void quit(){
-//        driver.quit();
-
+       driver.close();
     }
 }

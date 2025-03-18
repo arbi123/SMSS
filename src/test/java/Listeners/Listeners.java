@@ -60,12 +60,7 @@ public class Listeners extends BaseInformation implements ITestListener {
 
     @Override
     public void onTestStart(ITestResult result) {
-        AssertInfo assertInfo = result.getMethod().getConstructorOrMethod().getMethod().getAnnotation(AssertInfo.class);
-        if (assertInfo != null) {
-            for (String info : assertInfo.value()) {
-                test.log(Status.INFO, "Assert Info: " + info);
-            }
-        }
+
         test = extent.createTest(result.getMethod().getMethodName());
         test.log(Status.INFO, "Starting test: " + result.getMethod().getMethodName());
         test.log(Status.INFO, "Running on: " + System.getProperty("os.name"));
@@ -82,6 +77,12 @@ public class Listeners extends BaseInformation implements ITestListener {
 
     @Override
     public void onTestSuccess(ITestResult result) {
+        AssertInfo assertInfo = result.getMethod().getConstructorOrMethod().getMethod().getAnnotation(AssertInfo.class);
+        if (assertInfo != null) {
+            for (String info : assertInfo.value()) {
+                test.log(Status.INFO, "Assert Info: " + info);
+            }
+        }
         test.log(Status.PASS, "Test passed successfully.");
         test.log(Status.INFO, "Test finished: " + result.getMethod().getMethodName());
         String filepath = null;
