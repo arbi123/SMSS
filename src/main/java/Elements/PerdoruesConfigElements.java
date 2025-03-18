@@ -4,7 +4,8 @@ import Utilities.BaseInformation;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-imp
+import java.util.List;
+
 
 import java.lang.invoke.CallSite;
 
@@ -25,7 +26,7 @@ public class PerdoruesConfigElements{
     @FindBy(css = "#select2-roleListFilter-container")
     public WebElement roletFiletDD;
     @FindBy(xpath = "//span//ul//li[contains(@class, 'select2-results')]")
-    public WebElement options;
+    public List<WebElement> options;
 
 
     @FindBy(css = "button[class=\"btn btn-primary btn-icon rounded-circle mx-2 addUserDocuments\"]")
@@ -60,7 +61,7 @@ public class PerdoruesConfigElements{
     public WebElement inaktiveUC;
     @FindBy(css = "#sentRequest")
     public WebElement dergonKerkeseUC;
-    @FindBy(css = "span[class='select2 select2-container select2-container--default select2-container--below select2-container--focus'] span[role='combobox']")
+    @FindBy(css = "span[aria-expanded='true'] ul[class='select2-selection__rendered']")
     public WebElement roletUC;
     @FindBy(css = "#showFileUpload")
     public WebElement shikoDocUC;
@@ -74,6 +75,9 @@ public class PerdoruesConfigElements{
     public WebElement konfirmoFshirjenButton;
     @FindBy(css = "div[class='modal-dialog modal-dialog-centered'] h5[class='modal-title']")
     public WebElement konfirmoFshirjenTitle;
+
+    @FindBy(xpath = "//span/span[1]/span/ul")
+    public List<WebElement> rolet;
 
 
 

@@ -3,7 +3,10 @@ package Pages;
 import Elements.DitetPushimElements;
 import Elements.PerdoruesConfigElements;
 import Utilities.BaseInformation;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -12,6 +15,103 @@ public class PerdoruesConfigPage {
     WebDriverWait wait = new WebDriverWait(BaseInformation.getDriver(), Duration.ofSeconds(10));;
     PerdoruesConfigElements page= new PerdoruesConfigElements();
     Actions actions = new Actions(BaseInformation.getDriver());
+    public void shtoPerorues(){
+        wait.until(ExpectedConditions.elementToBeClickable(page.addUserConfigButton));
+        page.addUserConfigButton.click();
+    }
 
-    public void
+    public void setEmail(String value){
+        page.emailiUC.clear();
+        page.emailiUC.sendKeys(value);
+    }
+    public void setNID(String value){
+        page.NID_UC.clear();
+        page.NID_UC.sendKeys(value);
+    }
+    public void setDitelindja(String data){
+        page.dataUC.click();
+        page.dataUC.clear();
+        page.dataUC.sendKeys(data); // 22/02/2023
+        actions.sendKeys(Keys.ENTER).perform();
+    }
+    public void setEmer(String value){
+        page.emeriUC.clear();
+        page.emeriUC.sendKeys(value);
+    }
+    public void setMbimer(String value){
+        page.mbiemerUC.clear();
+        page.mbiemerUC.sendKeys(value);
+    }
+    public void setAtesi(String value){
+        page.atesiUC.clear();
+        page.atesiUC.sendKeys(value);
+    }
+    public void setNrTel(String value){
+        page.nrTelUC.clear();
+        page.nrTelUC.sendKeys(value);
+    }
+    public void setPuna(String value){
+        page.pozicioniPunesUC.clear();
+        page.pozicioniPunesUC.sendKeys(value);
+    }
+    public void setAdresa(String value){
+        page.adresaUC.clear();
+        page.adresaUC.sendKeys(value);
+    }
+    public void setKoment(String value){
+        page.komentUC.clear();
+        page.komentUC.sendKeys(value);
+    }
+    public void setCheckboxes(boolean inaktive,boolean DKN){
+        if(inaktive){
+            if(!page.inaktiveUC.isSelected()){
+                page.inaktiveUC.click();
+            }
+
+        }
+        if(DKN){
+            if(!page.dergonKerkeseUC.isSelected()){
+                page.dergonKerkeseUC.click();
+            }
+        }
+    }
+    public void  selectInstitucion(String value){
+        actions.scrollToElement(page.institucioniUC);
+        wait.until(ExpectedConditions.visibilityOf(page.institucioniUC));
+
+        page.institucioniUC.click();
+        wait.until(ExpectedConditions.visibilityOf(page.options.getFirst()));
+        for(WebElement in : page.options){
+            String text = in.getText();
+            if(text.contains(value)){
+                in.click();
+                break;
+            }
+
+        }
+    }
+    public void selectNjesia(String value){
+        wait.until(ExpectedConditions.elementToBeClickable(page.njesiaUC));
+        page.njesiaUC.click();
+        for(WebElement in : page.options){
+            String text = in.getText();
+            if(text.contains(value)){
+                in.click();
+                break;
+            }
+        }
+    }
+
+    public void selectRolet(String value){
+
+        page.rolet.getFirst().click();
+        for(WebElement in : page.options){
+            String text = in.getText();
+            if(text.contains(value)){
+                in.click();
+                break;
+            }
+        }
+
+    }
 }
