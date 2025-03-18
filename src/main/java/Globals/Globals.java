@@ -12,6 +12,7 @@ public class Globals {
     public static String NjesitConfigURL ="http://localhost:5163/UnitConfigurations";
     public static String KonfigurimiDokumenteveShoqeruese = "http://localhost:5163/AccompanyingDocumentsConfigurations";
     public static String DitetPushimUrl ="http://localhost:5163/HolidaysConfigurations";
+    public static String perdoruesConfigUrl ="http://localhost:5163/UserConfigurations";
 
 
     public static String generateRandom5DigitNumber() {
