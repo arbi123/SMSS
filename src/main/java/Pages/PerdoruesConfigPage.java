@@ -55,6 +55,7 @@ public class PerdoruesConfigPage {
         actions.sendKeys(Keys.ENTER).perform();
     }
     public void setEmer(String value){
+        wait.until(ExpectedConditions.visibilityOf(page.emeriUC));
         page.emeriUC.clear();
         page.emeriUC.sendKeys(value);
     }
@@ -119,6 +120,11 @@ public class PerdoruesConfigPage {
 
         }
     }
+    public void fshirjaInstitucionit(){
+        page.fshiInstitucionUC.getFirst().click();
+        wait.until(ExpectedConditions.visibilityOf(page.konfirmoFshirjenTitle));
+        page.konfirmoFshirjenButton.click();
+    }
     public void selectNjesia(String value) throws InterruptedException {
         Thread.sleep(500);
         wait.until(ExpectedConditions.elementToBeClickable(page.njesiaUC));
@@ -141,6 +147,10 @@ public class PerdoruesConfigPage {
 
     public void selectRolet(String value) throws InterruptedException {
         Thread.sleep(500);
+
+        page.rolet.getFirst().click();
+        actions.sendKeys(Keys.BACK_SPACE).perform();
+        page.rolet.getFirst().click();
         page.rolet.getFirst().click();
         for(WebElement in : page.options){
             String text = in.getText();
@@ -251,13 +261,36 @@ public class PerdoruesConfigPage {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         return today.format(formatter);
     }
-    public void editData(){
-   setEmer("");
-   setMbimer("");
-   setEmail("");
-   setNrTel("");
-   setCheckboxes(false,true);
+    public void editForm(String emer,
+                         String mbimer,
+                         String email,
+                         String nid,
+                         String nrTel,
+                         String institucion,
+                         String njesia,
+                         boolean inaktive,
+                         boolean DKN,
+                         String rolet) throws InterruptedException {
+        this.emer = emer;
+        this.mbimer = mbimer;
+        this.email = email;
+        this.nid = nid;
+        this.nrTel = nrTel;
+        this.institucion = institucion;
+        this.njesia = njesia;
+        this.inaktive = inaktive;
+        this.DKN = DKN;
+        this.rolet = rolet;
 
+        setEmer(emer);
+        setMbimer(mbimer);
+        setEmail(email);
+        setNID(nid);
+        setNrTel(nrTel);
+        setCheckboxes(inaktive, DKN);
+        selectInstitucion(institucion);
+        selectNjesia(njesia);
+        selectRolet(rolet);
     }
     public void clickEditButton(){
         wait.until(ExpectedConditions.elementToBeClickable(page.editButton));
@@ -268,5 +301,8 @@ public class PerdoruesConfigPage {
         page.deleteButton.click();
         wait.until(ExpectedConditions.elementToBeClickable(page.konfirmoDelete));
         page.konfirmoDelete.click();
+    }
+    public boolean emptyDataTitleIsDisplayed(){
+        return page.emptyData.isDisplayed();
     }
 }

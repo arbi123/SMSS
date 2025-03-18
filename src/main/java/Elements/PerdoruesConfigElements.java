@@ -111,6 +111,8 @@ public class PerdoruesConfigElements{
     public WebElement konfirmoDelete;
     @FindBy(css = "#dropdownMenuButton")
     public WebElement dropdownMenu;
+    @FindBy(css = ".dataTables_empty")
+    public WebElement emptyData;
 
 
 

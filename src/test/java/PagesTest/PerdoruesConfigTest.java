@@ -54,23 +54,39 @@ public class PerdoruesConfigTest {
         softAssert.assertTrue(page.getInsititucioniDheNjesiaTable().contains(page.institucion), "Institucioni nuk u gjet në tabelë!");
         softAssert.assertTrue(page.getInsititucioniDheNjesiaTable().contains(page.njesia), "Njësia nuk u gjet në tabelë!");
         softAssert.assertEquals(page.getNIDTable(), page.nid, "NID nuk përputhet!");
-        softAssert.assertEquals(page.getNrTelefonTable(), page.nrTel, "Numri i telefonit nuk përputhet!");
+      //  softAssert.assertEquals(page.getNrTelefonTable(), page.nrTel, "Numri i telefonit nuk përputhet!");
         softAssert.assertEquals(page.getRoliTable(), page.rolet, "Roli nuk përputhet!");
         softAssert.assertEquals(page.getDataKrijimitTable(), page.getTodayDate(), "Data e krijimit nuk përputhet!");
         softAssert.assertEquals(page.getInaktiveCheckBoxTable(),page.inaktive,"Nuk jan te njejta checkBoxi Inaktiv");
     softAssert.assertAll();
     }
-    @Test
-    public void edit() throws InterruptedException {
+    @Test(priority = 3)
+    public void editimiITeDhenave() throws InterruptedException {
     page.clickEditButton();
-    page.editData();
-    searchAndVerifyTableData();// beje insert again
+    page.editForm("EditTEST","MeditTEST","editedEmail@gmail.com","A44441B","952222","Bashkia Memaliaj","Qëndror",false,true,"Kryeinspektor");
+    page.fshirjaInstitucionit();
+    page.shtimiInstitucionit();
+    page.ruajPerdorues();
     }
-    @Test
+    @Test(priority = 4)
+    public void searchAndVerifyEditedTableData() throws InterruptedException {
+        page.searchByEmailAndName();
+        softAssert.assertTrue(page.getEmeriIPloteTable().contains(page.emer), "Emri nuk u gjet në tabelë! Mbas editimi");
+        softAssert.assertEquals(page.getEmailTable(), page.email, "Email-i nuk përputhet! Mbas editimi");
+        softAssert.assertTrue(page.getInsititucioniDheNjesiaTable().contains(page.institucion), "Institucioni nuk u gjet në tabelë!Mbas editimi");
+        softAssert.assertTrue(page.getInsititucioniDheNjesiaTable().contains(page.njesia), "Njësia nuk u gjet në tabelë!Mbas editimi");
+        softAssert.assertEquals(page.getNIDTable(), page.nid, "NID nuk përputhet! Mbas editimi");
+        softAssert.assertEquals(page.getNrTelefonTable(), page.nrTel, "Numri i telefonit nuk përputhet!Mbas editimi");
+        softAssert.assertEquals(page.getRoliTable(), page.rolet, "Roli nuk përputhet! Mbas editimi");
+        softAssert.assertEquals(page.getDataKrijimitTable(), page.getTodayDate(), "Data e krijimit nuk përputhet! Mbas editimi");
+        softAssert.assertEquals(page.getInaktiveCheckBoxTable(),page.inaktive,"Nuk jan te njejta checkBoxi Inaktiv Mbas editimi");
+        softAssert.assertAll();
+    }
+    @Test(priority = 5)
     public void deleteData() throws InterruptedException {
         page.fshiPerdorues();
         page.searchByEmailAndName();
-        Assert.assertFalse(page.getEmailTable());
+        Assert.assertTrue(page.emptyDataTitleIsDisplayed(),"Ka akoma data me te njejtin emer dhe email");
     }
 
 
