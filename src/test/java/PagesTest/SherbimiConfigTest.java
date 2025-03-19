@@ -35,7 +35,7 @@ public class SherbimiConfigTest {
     @Test(priority = 2)
     public void shtimiIServiseve() throws InterruptedException {
         page.shtoSherbim();
-        page.klikoCheckBox();
+        page.setAllCheckboxes(true,true,true,true,true,true);
         page.shtimiIdokumentitMeSherbimDheInstitucion("Certifikatë familjare","Ministria e Brendshme");
     }
 }

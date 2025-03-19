@@ -29,15 +29,15 @@ public class SherbimiConfigElements {
     public WebElement selectLLojiSherbimitSS;
     @FindBy(xpath = "//input[@id='wsIntegrationAdd']/following-sibling::span[@title='Selekto']")
     public WebElement integrimWSCheckBoxSS;
-    @FindBy(css = "//input[@id='thinkingAdd']/following-sibling::span[@title='Selekto']")
+    @FindBy(xpath = "//input[@id='thinkingAdd']/following-sibling::span[@title='Selekto']")
     public WebElement mendimDhenieCheckBoxSS;
-    @FindBy(css = "//input[@id='inactiveAdd']/following-sibling::span[@title='Selekto']")
+    @FindBy(xpath = "//input[@id='inactiveAdd']/following-sibling::span[@title='Selekto']")
     public WebElement inaktiveCheckBoxSS;
-    @FindBy(css = "//input[@id='canDeleteAd']/following-sibling::span[@title='Selekto']")
+    @FindBy(xpath = "//input[@id='canDeleteAd']/following-sibling::span[@title='Selekto']")
     public WebElement canDeleteCheckBoxSS;
-    @FindBy(css = "//input[@id='processingSqdneAdd']/following-sibling::span[@title='Selekto']")
+    @FindBy(xpath = "//input[@id='processingSqdneAdd']/following-sibling::span[@title='Selekto']")
     public WebElement procesimCheckBoxSS;
-    @FindBy(css = "//input[@id='noMonitoringAdd']/following-sibling::span[@title='Selekto']")
+    @FindBy(xpath = "//input[@id='noMonitoringAdd']/following-sibling::span[@title='Selekto']")
     public WebElement paMonitorimCheckBoxSS;
     //sherbim me procesim
     @FindBy(css = "#deadline-type")
