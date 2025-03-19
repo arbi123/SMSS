@@ -138,6 +138,21 @@ public class InstitucioniKofigPage {
         page.shtoInstitucion.click();
         BaseInformation.waitForElementVisible(page.title);
     }
+    public void shtoInstitucioninMeNjesi(String njesia) {
+        shtoInstitucionButton();
+        sendImg("C:\\Users\\Arbi.topi\\Downloads\\Folder\\photo.png");
+        emertimiInstitucionit("test" + generateRandom5DigitNumber());
+        setKodi("koditest");
+        nrPortokolli("str");
+        titullari("titull");
+        pozicionTitull("pozicionTest");
+        institucioniPrid("Agjencia e Kerkimit, Teknologjise dhe Inovacionit");
+        radioButtons(true, false, false);
+        setKokaShkr("test");
+        setFundiShkr("testfund");
+        njesiaSelect(njesia);  // Kjo është input nga metoda
+        ruajShtiminEInstitucionit();
+    }
 
     public void shtoInstitucionin(){
         shtoInstitucionButton();

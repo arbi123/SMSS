@@ -29,7 +29,6 @@ public class InstitucioniKonfigTest {
         driver = BaseInformation.getDriver();
         page=new InstitucioniKofigPage();
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        driver.navigate().to(Globals.institucionConfigURL);
     }
 
 
