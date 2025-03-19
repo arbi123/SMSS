@@ -46,6 +46,13 @@ public class SherbimiConfigPage {
         Thread.sleep(1500);
         spanButton.click();
     }
+    public void searchDSH(String value){
+        wait.until(ExpectedConditions.elementToBeClickable(page.dokumenteSHsearchBoxSS));
+        page.dokumenteSHsearchBoxSS.click();
+        page.dokumenteSHsearchBoxSS.clear();
+        page.dokumenteSHsearchBoxSS.sendKeys(value);
+
+    }
     public void kodiSherbimit(){
         wait.until(ExpectedConditions.visibilityOf(page.kodiSherbimitSS));
         page.kodiSherbimitSS.clear();
