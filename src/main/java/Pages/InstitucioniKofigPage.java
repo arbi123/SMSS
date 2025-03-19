@@ -157,7 +157,7 @@ public class InstitucioniKofigPage {
     public void shtoInstitucionin(){
         shtoInstitucionButton();
         sendImg("C:\\Users\\Arbi.topi\\Downloads\\Folder\\photo.png");
-        emertimiInstitucionit("test"+generateRandom5DigitNumber());
+        emertimiInstitucionit("EmeriInstitucionittest"+generateRandom5DigitNumber());
         setKodi("koditest");
         nrPortokolli("str");
         titullari("titull");
