@@ -13,6 +13,7 @@ public class Globals {
     public static String KonfigurimiDokumenteveShoqeruese = "http://localhost:5163/AccompanyingDocumentsConfigurations";
     public static String DitetPushimUrl ="http://localhost:5163/HolidaysConfigurations";
     public static String perdoruesConfigUrl ="http://localhost:5163/UserConfigurations";
+    public static String SherbimetConfigUrl ="http://localhost:5163/ServiceConfigurations";
 
 
     public static String generateRandom5DigitNumber() {
