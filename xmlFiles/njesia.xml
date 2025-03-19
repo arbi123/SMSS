@@ -8,15 +8,8 @@
     <test verbose="2" preserve-order="true" name="C:/Users/Arbi.topi/IdeaProjects/TestimTemp/src/test/java">
         <classes>
             <class name="PagesTest.IdentifikimTest"/>
-            <class name="PagesTest.InstitucioniKonfigTest"></class>
             <class name="PagesTest.NjesitKofigTest">
-                <methods>
-                    <exclude name="setUp"></exclude>
-                    <include name="shtoNjesi"/>
-                    <include name="editimNjesie"/>
-                    <include name="fshirjaENjesis"/>
-            </methods></class>
-
+            </class>
         </classes>
     </test>
 </suite>

@@ -67,7 +67,8 @@ public class DokumentesSHConfigTest {
             "Editojmë dhe mbushim shërbimin me një emër të vlefshëm",
             "Verifikojmë që nuk mund të ruajmë shërbimin pa një institucion",
             "Editojmë dhe ruajmë shërbimin me një emër të saktë dhe institucion"
-    })    public void editimiISherbimit() {
+    })
+    public void editimiISherbimit() {
         page.clickEditSherbimi();
         page.ruajSherbimin();
         page.editAndFillSherbimi("");
@@ -110,6 +111,19 @@ public class DokumentesSHConfigTest {
         page.shtoSherbimin(htmlAlert,"Bashkia Maliq");
         page.ruajSherbimin();
         Assert.assertTrue(page.errorSherbimiTB(),"Nuk doli errori pra e ka injektuar skriptin html");
+    }
+    @Test(priority = 0)
+    public void testimiFiltrimitTeListes() throws InterruptedException {
+        page.klikimiTeListaInstitucioneveDheVerifikimi("4534");
+        Assert.assertEquals(page.getDataTableSize(),3,"Nuk kane dale sa duhen data");
+        page.pastroTeDhenat();
+        Assert.assertEquals(page.getDataTableSize(),10,"Nuk kane dale 10 data by deafult mbas pastrimit te filtrave");
+        page.shfaqRezultate("25");
+        Assert.assertEquals(page.getDataTableSize(),25,"Nuk kane dale 25 data mbas selektimit te shfaqe rezultate ne faqe ");
+        page.shfaqRezultate("50");
+        Assert.assertTrue(page.getDataTableSize()<=50,"Nuk kane dale 50 data mbas selektimit te shfaqe rezultate ne faqe ");
+        page.shfaqRezultate("100");
+        Assert.assertTrue(page.getDataTableSize()<=100,"Nuk kane dale 100 data mbas selektimit te shfaqe rezultate ne faqe ");
     }
 
     @AfterClass

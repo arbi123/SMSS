@@ -37,6 +37,12 @@ public class Listeners extends BaseInformation implements ITestListener {
     @Override
     public void onTestFailure(ITestResult Result)
     {
+        AssertInfo assertInfo = Result.getMethod().getConstructorOrMethod().getMethod().getAnnotation(AssertInfo.class);
+        if (assertInfo != null) {
+            for (String info : assertInfo.value()) {
+                test.log(Status.INFO, "Assert Info: " + info);
+            }
+        }
         test.fail(Result.getThrowable());
         String filepath = null;
         try {
@@ -77,21 +83,10 @@ public class Listeners extends BaseInformation implements ITestListener {
 
     @Override
     public void onTestSuccess(ITestResult result) {
-        AssertInfo assertInfo = result.getMethod().getConstructorOrMethod().getMethod().getAnnotation(AssertInfo.class);
-        if (assertInfo != null) {
-            for (String info : assertInfo.value()) {
-                test.log(Status.INFO, "Assert Info: " + info);
-            }
-        }
+
         test.log(Status.PASS, "Test passed successfully.");
         test.log(Status.INFO, "Test case finished: " + result.getMethod().getMethodName());
-        String filepath = null;
-        try {
-            filepath = getScreenShot();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        test.addScreenCaptureFromPath(filepath, result.getMethod().getMethodName());
+
         System.out.println("The name of the testcase passed is: " + result.getName());
     }
 

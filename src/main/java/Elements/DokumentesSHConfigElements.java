@@ -19,8 +19,12 @@ public class DokumentesSHConfigElements {
     public WebElement institucioniDD;
     @FindBy(xpath = "//span/input")
     public WebElement institucioniSearchBox;
+    @FindBy(xpath = "//tbody//tr")
+    public List<WebElement> tableDataSize;
     @FindBy(xpath = "//label/input")
     public WebElement searchBox;
+    @FindBy(css = "select[name='services_table_length']")
+    public WebElement shfaqTeDhena;
     @FindBy(css = "#serviceAdd")
     public WebElement dshEmeriISherbimit;
     @FindBy(xpath = "//span//ul//li")
@@ -29,7 +33,6 @@ public class DokumentesSHConfigElements {
     public WebElement dshtitulliShtimit;
     @FindBy(css = "#select2-institutionSelectAdd-container")
     public WebElement dshInstitucioniDD;
-    //    @FindBy(css = "")
     @FindBy(css = "#submitButton")
     public WebElement ruajButton;
     @FindBy(css = "tbody tr:nth-child(1) td:nth-child(2)")

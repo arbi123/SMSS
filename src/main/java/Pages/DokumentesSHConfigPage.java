@@ -3,8 +3,10 @@ package Pages;
 import Elements.DokumentesSHConfigElements;
 import Elements.InstitucionKonfigElements;
 import Utilities.BaseInformation;
+import org.apache.poi.ss.formula.functions.T;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -121,6 +123,32 @@ public String getInstitucioniTable() throws InterruptedException {
         Thread.sleep(500);
         return page.sherbimiListTable.isEmpty() && page.insitucionetListTable.isEmpty();
     }
+    public void klikimiTeListaInstitucioneveDheVerifikimi(String institucioni) throws InterruptedException {
+        wait.until(ExpectedConditions.elementToBeClickable(page.institucioniDD));
+        page.institucioniDD.click();
+        for(WebElement in : page.listaInstitucioneve){
+            String text = in.getText();
+            if(text.contains(institucioni)){
+                in.click();
+                break;
+            }
+        }
+        Thread.sleep(2000);
 
+    }
+    public void pastroTeDhenat() throws InterruptedException {
+        wait.until(ExpectedConditions.elementToBeClickable(page.pastroFiltrat));
+        page.pastroFiltrat.click();
+        Thread.sleep(2000);
+    }
+    public int getDataTableSize(){
+        return page.tableDataSize.size();
+    }
+    public void shfaqRezultate(String index) throws InterruptedException {
+        Select select = new Select(page.shfaqTeDhena);
+        select.selectByValue(index);
+        Thread.sleep(2000);
+
+    }
 
 }

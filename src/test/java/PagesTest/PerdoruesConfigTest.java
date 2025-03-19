@@ -135,20 +135,26 @@ public class PerdoruesConfigTest {
         Assert.assertTrue(page.emptyDataTitleIsDisplayed(),"Ka akoma data me te njejtin emer dhe email");
     }
 
-    @Test(priority = 0,dataProviderClass = DataProviders.PerdoruesConfigDataProvider.class,dataProvider = "formData",enabled = false)
+    @Test(priority = 0,dataProviderClass = DataProviders.PerdoruesConfigDataProvider.class,dataProvider = "formData")
     public void TESTEXCEL(String email, String nid, String ditelindja, String emer,
                           String mbimer, String atesi, String nrTel, String puna,
                           String adresa, String koment, boolean inaktive, boolean DKN,
                           String institucion, String njesia, String rolet) throws InterruptedException {
+
         driver.navigate().to(Globals.perdoruesConfigUrl);
         wait.until(ExpectedConditions.urlToBe(Globals.perdoruesConfigUrl));
         page.shtoPerorues();
-        page.fillForm(email, nid, ditelindja, emer, mbimer, atesi, nrTel, puna,
-                adresa, koment, inaktive, DKN, institucion, njesia, rolet);
-
+        page.fillForm(email, nid, ditelindja, emer, mbimer, atesi, nrTel, puna, adresa, koment, inaktive, DKN, institucion, njesia, rolet);
         page.shtimiInstitucionit();
         Assert.assertTrue(page.isTableDisplayed(),"Nuk ka dale tabela e Institucionit mbas zgjedhjes se insititucionit dhe njesis dhe klikimit te + button");
         page.ruajPerdorues();
+
+        page.searchByEmailAndName();
+        page.fshiPerdorues();
+        page.searchByEmailAndName();
+        Assert.assertTrue(page.emptyDataTitleIsDisplayed(),"Ka akoma data me te njejtin emer dhe email");
+        driver.navigate().refresh();
+
     }
 
 
