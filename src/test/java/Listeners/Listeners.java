@@ -62,7 +62,7 @@ public class Listeners extends BaseInformation implements ITestListener {
     public void onTestStart(ITestResult result) {
 
         test = extent.createTest(result.getMethod().getMethodName());
-        test.log(Status.INFO, "Starting test: " + result.getMethod().getMethodName());
+        test.log(Status.INFO, "Starting test case : " + result.getMethod().getMethodName());
         test.log(Status.INFO, "Running on: " + System.getProperty("os.name"));
 
         // Log test parameters if any exist
@@ -84,7 +84,7 @@ public class Listeners extends BaseInformation implements ITestListener {
             }
         }
         test.log(Status.PASS, "Test passed successfully.");
-        test.log(Status.INFO, "Test finished: " + result.getMethod().getMethodName());
+        test.log(Status.INFO, "Test case finished: " + result.getMethod().getMethodName());
         String filepath = null;
         try {
             filepath = getScreenShot();

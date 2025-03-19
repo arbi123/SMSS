@@ -29,6 +29,14 @@ public class DokumentesSHConfigTest {
         driver.navigate().to(Globals.KonfigurimiDokumenteveShoqeruese);
     }
     @Test(priority = 1)
+    @AssertInfo({
+            "Navigojmë te faqja e konfigurimit të dokumenteve shoqërues",
+            "Konfirmojmë që URL është e saktë për konfigurimin e dokumenteve shoqërues",
+            "Shtojmë një shërbim me emër unik dhe emër institucioni",
+            "Verifikojmë që shërbimi dhe institucioni janë të njëjta me ato që kemi futur",
+            "Ruajmë shërbimin dhe konfirmojmë suksesin e krijimit",
+            "Sigurohemi që mesazhi i suksesit është shfaqur pas ruajtjes"
+    })
     public void shtimiIDokumenteveShoqeruese() throws InterruptedException {
         driver.navigate().to(Globals.KonfigurimiDokumenteveShoqeruese);
         wait.until(ExpectedConditions.urlToBe(Globals.KonfigurimiDokumenteveShoqeruese));
@@ -40,15 +48,26 @@ public class DokumentesSHConfigTest {
         Assert.assertTrue(page.isSuccessMessageDisplayed(),"Nuk u krye saktesisht krijimi i sherbimit");
     }
     @Test(priority = 2)
+    @AssertInfo({
+            "Kërkojmë shërbimin në tabelën e rezultateve",
+            "Verifikojmë që shërbimi i gjetur është i njëjtë me atë që kemi kërkuar",
+            "Konfirmojmë që institucioni i gjetur është i njëjtë me atë që kemi kërkuar"
+    })
     public void kerkimiDheValidimiIKrijimitTe0Dokumentacionit() throws InterruptedException {
     page.searchByValue(page.Sherbimi);
     Assert.assertEquals(page.getSherbimiTable(),page.Sherbimi,"Sherbimi nuk eshte i njejte si tek tabela e rezultateve mas kerkimit");
     Assert.assertEquals(page.getInstitucioniTable(),page.Institucioni,"Institucioni nuk eshte i njejte si tek tabela e rezultateve mas kerkimit");
     }
-    ExtentTest test;
+
     @Test(priority =3)
-    @AssertInfo("S")
-    public void editimiISherbimit() {
+    @AssertInfo({
+            "Klikojmë butonin për të edituar shërbimin",
+            "Ruajmë shërbimin pas editimit të parë",
+            "Sigurohemi që shërbimi bosh shkakton një gabim",
+            "Editojmë dhe mbushim shërbimin me një emër të vlefshëm",
+            "Verifikojmë që nuk mund të ruajmë shërbimin pa një institucion",
+            "Editojmë dhe ruajmë shërbimin me një emër të saktë dhe institucion"
+    })    public void editimiISherbimit() {
         page.clickEditSherbimi();
         page.ruajSherbimin();
         page.editAndFillSherbimi("");
@@ -62,6 +81,13 @@ public class DokumentesSHConfigTest {
 
     }
     @Test(priority = 4)
+    @AssertInfo({
+            "Kërkojmë shërbimin për fshirje",
+            "Klikojmë për të fshirë shërbimin dhe konfirmojmë fshirjen",
+            "Konfirmojmë që kutia e konfirmimit të fshirjes është shfaqur",
+            "Verifikojmë që shërbimi është fshirë pas konfirmimit të fshirjes",
+            "Sigurohemi që tabela është bosh dhe nuk ka të dhëna të mbetura"
+    })
     public void deleteSherbim() throws InterruptedException {
         page.searchByValue(page.Sherbimi);
         page.deleteSherbimi();
@@ -72,6 +98,12 @@ public class DokumentesSHConfigTest {
 
     }
     @Test(priority = 5)
+    @AssertInfo({
+            "Rifreskojmë faqen për t'u siguruar që të dhënat janë të përditësuara",
+            "Shtojmë një shërbim me të dhëna të pasakta (HTML injeksion)",
+            "Ruajmë shërbimin dhe verifikojmë që është shfaqur gabimi për të dhënat e pasakta",
+            "Sigurohemi që nuk është lejuar injektimi i skriptit HTML"
+    })
     public void testimiMeInvalidData() throws InterruptedException {
         String htmlAlert="<script>alert('M4rdukwasH3re')</script>";
         driver.navigate().refresh();

@@ -34,7 +34,12 @@ public class InstitucioniKonfigTest {
 
 
     @Test(priority = 1)
-    @AssertInfo({"S","ssss"})
+    @AssertInfo({
+            "Navigojmë te faqja e konfigurimit të institucioneve",
+            "Presim që faqja të ngarkohet",
+            "Klikojmë butonin për shtimin e institucionit",
+            "Konfirmojmë që mesazhi i suksesit është shfaqur"
+    })
     public void krijimiIInstitucionit(){
         driver.navigate().to(Globals.institucionConfigURL);
         BaseInformation.waitUntilPageLoads();
@@ -42,6 +47,12 @@ public class InstitucioniKonfigTest {
         Assert.assertTrue(page.isSuccesMessageDisplayed(),"Nuk Doli mesazhi i suksesit");
     }
     @Test(priority = 2)
+    @AssertInfo({
+            "Presim që faqja të mos jetë duke u rifreskuar",
+            "Kërkojmë institucionin sipas emrit",
+            "Presim pak sekonda për ngarkimin e të dhënave",
+            "Konfirmojmë që emri i institucionit është i saktë ose ekziston"
+    })
     public void kerkimiIInstitucionitTeKrijuar() throws InterruptedException {
         page.waitTillNotReloading();
         page.searchByValue(page.emeri);
@@ -49,6 +60,13 @@ public class InstitucioniKonfigTest {
         Assert.assertEquals(page.getFirstName(),page.emeri,"Emerat nuk jane te njejte ose nuk ekziston");
     }
     @Test(priority = 3)
+    @AssertInfo({
+            "Verifikojmë që titullari është i njëjtë me vlerën e regjistruar",
+            "Konfirmojmë që pozicioni i titullarit është i saktë",
+            "Kontrollojmë që vlera e checkbox-it inaktiv përputhet me regjistrimin",
+            "Sigurohemi që butonat e editimit janë të disponueshëm pas kërkimit",
+            "Verifikojmë që butonat e fshirjes janë të disponueshëm pas kërkimit"
+    })
     public void verifikimiTableData(){
        softAssert.assertEquals(page.getTitullari(),page.titull,"Nuk eshte i njejte texti i titullarit");
        softAssert.assertEquals(page.getPozicioniTitullarit(),page.pozicionTitull,"Nuk eshte i njejte texti i Pozicionit te titullarit");
@@ -59,6 +77,19 @@ public class InstitucioniKonfigTest {
     }
 
     @Test(priority = 4)
+    @AssertInfo({
+            "Klikojmë butonin e editimit për institucionin e parë",
+            "Verifikojmë që emri i institucionit është i njëjtë",
+            "Konfirmojmë që kodi është i saktë",
+            "Sigurohemi që titullari është i njëjtë me vlerën e regjistruar",
+            "Verifikojmë që kodi i protokollit është korrekt",
+            "Konfirmojmë që pozicioni i titullarit është i saktë",
+            "Kontrollojmë që checkbox-i 'Kryesore' ka vlerën e duhur",
+            "Verifikojmë që checkbox-i 'Inaktive' ka vlerën e duhur",
+            "Sigurohemi që checkbox-i 'Generate Template' është korrekt",
+            "Konfirmojmë që koka e shkresës është e njëjtë me të regjistruarën",
+            "Verifikojmë që njësia e lidhur është e saktë pas editimit"
+    })
     public void verifikimEditData() throws IOException, UnsupportedFlavorException {
        page.clickFirstEditButton();
         softAssert.assertEquals(page.getEmeriMI(),page.emeri,"Nuk kan emertime te njejta");
@@ -76,6 +107,13 @@ public class InstitucioniKonfigTest {
         softAssert.assertAll();
     }
     @Test(priority = 5)
+    @AssertInfo({
+            "Modifikojmë dhe ruajmë automatikisht të dhënat",
+            "Verifikojmë që nuk ka ndonjë bug ose error pas ruajtjes",
+            "Konfirmojmë që emri është i saktë pas modifikimit",
+            "Sigurohemi që titullari është i njëjtë pas modifikimit",
+            "Verifikojmë që pozicioni i titullarit është korrekt pas modifikimit"
+    })
     public void EditAndRuaj(){
         page.modifikimDheRuajtjeAuto();
         softAssert.assertFalse(page.isErrorDisplayed(),"Kemi nje bug ose error kur i modifikojm dhe provojm ti ruajm te dhenat");
@@ -86,6 +124,14 @@ public class InstitucioniKonfigTest {
     }
 
     @Test(priority = 7)
+    @AssertInfo({
+            "Rifreskojmë faqen për t'u siguruar që të dhënat janë të përditësuara",
+            "Kërkojmë institucionin sipas emrit për fshirje",
+            "Fshijmë institucionin dhe konfirmojmë suksesin e operacionit",
+            "Rikërkojmë institucionin për t'u siguruar që është fshirë",
+            "Verifikojmë që butonat e fshirjes nuk janë të pranishëm pas fshirjes",
+            "Sigurohemi që butonat e editimit nuk janë të pranishëm pas fshirjes"
+    })
     public void fshirjaETeDhenave(){
         driver.navigate().refresh();
         page.searchByValue(page.emeri1);
@@ -95,12 +141,6 @@ public class InstitucioniKonfigTest {
         Assert.assertFalse(page.getDeleteBtnsSize()<0,"Nuk eshte fshire ose data te tjera kan same name"+page.getFirstName());
         Assert.assertFalse(page.getEditButtonsSize()<0,"Nuk eshte fshire ose data te tjera kan same name"+page.getFirstName());
     }
-
-//    @Test(priority = 6)
-//    public void nxjerrjaETeDhenaveDheVerifikimiNgaExcel() {
-//        page.downloadExcel();
-//
-//    }
 
 
 
