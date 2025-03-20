@@ -42,7 +42,6 @@ public class DitetPushimTest {
     Assert.assertEquals(page.getData(),date,"Datat nuk jane njelloj. Prisnim : "+date+" Ishte: "+page.getData());
     Assert.assertEquals(page.getEmeri(),event,"Festa nuk jane njelloj. Prisnim : "+event+" Ishte: "+page.getEmeri());
     page.anulloShtimin();
-
     }
     @AfterClass
     public void quit(){

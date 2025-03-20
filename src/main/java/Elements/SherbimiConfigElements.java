@@ -44,7 +44,8 @@ public class SherbimiConfigElements {
     public WebElement selectLlojiAfatitSS;
     @FindBy(css = "#replyDeadlineAdd")
     public WebElement afatiPergjigjesSS;
-
+    @FindBy(css = "#submitButton")
+    public WebElement ruajButton;
 
     @FindBy(css = "#chosenDocuments")
     public WebElement dokumentetEzgjedhura;
