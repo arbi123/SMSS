@@ -1,6 +1,7 @@
 package Elements;
 
 import Utilities.BaseInformation;
+import org.json.XML;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -17,8 +18,6 @@ public class SherbimiConfigElements {
     public WebElement searchBox;
     @FindBy(css = "#serviceAdd")
     public WebElement sherbimiSS;
-    @FindBy(css = "#select2-institutionSelectAdd-container")
-    public WebElement DDinsititucioniSS;
     @FindBy(xpath = "//span//ul//li[contains(@class, 'select2-results')]")
     public List<WebElement> institucioniOptionsSS;
     @FindBy(css = "#serviceCodeAdd")
@@ -78,11 +77,26 @@ public class SherbimiConfigElements {
     public WebElement editTableButton;
     @FindBy(xpath = "//table[@id='services_table']//tbody/tr[1]/td[10]/div/button[2]")
     public WebElement deleteTableButton;
+    @FindBy(css = "button[class='btn btn-danger bootbox-accept']")
+    public WebElement confirmDeleteTableButton;
+    @FindBy(xpath = "//h5[normalize-space(text())='Fshi Shërbimin']")
+    public WebElement deleteTitle;
     @FindBy(css = "#serviceCodeFilter")
     public WebElement kodiSherbimitFilter;//click enter at the end
     @FindBy(css = "span[id='select2-institucioniListFilter-container'] span[class='select2-selection__placeholder']")
     public WebElement institucioniDDFilter;
+    @FindBy(xpath = "//ul[@id='select2-institucioniListFilter-results']/li")
+    public List<WebElement> institucionDDFilter;
+    @FindBy(xpath = "//ul[@id='select2-serviceTypeFilter-results']/li")
+    public List<WebElement> llojiSherbimitFilterOptions;
     @FindBy(css = "ul[class='select2-selection__rendered']")
     public WebElement llojiSherbimitFilter;
+    @FindBy(xpath = "//table[@id='services_table']/thead/tr/th[1]")
+    public WebElement sortFromTheNewest;
+    @FindBy(xpath = "//h5[@id='lblAddServiceDocumentsModal' and normalize-space(text())='Modifiko Shërbimin']")
+    public WebElement modifikoTitle;
+    @FindBy(xpath = "//h5[@id='lblAddServiceDocumentsModal' and normalize-space(text())='Shto Shërbim']")
+    public WebElement shtoSherbimTitle;
+
 
 }

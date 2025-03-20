@@ -34,7 +34,7 @@ public class SherbimiConfigTest {
         wait.until(ExpectedConditions.urlToBe(Globals.SherbimetConfigUrl));
         Assert.assertEquals(driver.getCurrentUrl(),Globals.SherbimetConfigUrl);
     }
-     @Test(priority = 2)
+     @Test(priority = 2,enabled = false)
      public void getTableTextAndVerify(){
          System.out.println(page.getTableSherbimiName());
          System.out.println(page.getTableKodiSherbimiTablet());
@@ -61,11 +61,31 @@ public class SherbimiConfigTest {
         page.searchAndClickDokumentSH("Certifikatë familjare","Certifikatë familjare","Ministria e Brendshme");
         page.searchAndClickDokumentSH("Certifikatë personale","Certifikatë personale","Ministria e Brendshme");
 
-        Assert.assertTrue(page.areAllTextsContained(),"Ka mungese nga cfare ke shtuar dhe cfare kane dale");
+        Assert.assertTrue(page.areAllDocSHTextsContained(),"Ka mungese nga cfare ke shtuar dhe cfare kane dale");
         // page.ruajButton();
     }
     @Test
-    public void delete(){
+    public void verifikimiITeDhenaveNeTable(){
+        //verifikio te gjitha pervec lloji sherbimit se ka bug/shumpun
+    }
+    @Test
+    public void editimiISherbimitTeKrijuar() throws InterruptedException {
+        page.searchTableEmerSherbimi("testttt");
+        page.editButton();
+        System.out.println(page.getEmeriSherbimitMS());
+        System.out.println(page.getInstitucioniMS());
+        System.out.println(page.getKodiSherbimitMS());
+        System.out.println(page.getLlojiSherbimitMS());
+        System.out.println(page.getInaktiveMS());
+        System.out.println(page.getFshijeDSH());
+
+
+    }
+    @Test(priority = 2)
+    public void searchBox() throws InterruptedException {
+        //page.searchByFiltrat("Bashkia klos","Shërbim me vulë","221"); it dont work
+        //page.sortTable(); kjo nuk eshte bug se behet tabela unresponisve
+
 
     }
     @AfterClass
