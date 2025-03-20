@@ -19,7 +19,7 @@ public class SherbimiConfigElements {
     public WebElement sherbimiSS;
     @FindBy(css = "#select2-institutionSelectAdd-container")
     public WebElement DDinsititucioniSS;
-    @FindBy(css = "//span//ul//li[contains(@class, 'select2-results')]")
+    @FindBy(xpath = "//span//ul//li[contains(@class, 'select2-results')]")
     public List<WebElement> institucioniOptionsSS;
     @FindBy(css = "#serviceCodeAdd")
     public WebElement kodiSherbimitSS;
@@ -47,7 +47,42 @@ public class SherbimiConfigElements {
     @FindBy(css = "#submitButton")
     public WebElement ruajButton;
 
-    @FindBy(css = "#chosenDocuments")
-    public WebElement dokumentetEzgjedhura;
+    @FindBy(css = "#chosenDocuments div")
+    public List<WebElement> dokumentetEzgjedhura;
+
+    @FindBy(xpath = "//div[@id='chosenDocuments']//span")
+    public List<WebElement> docSHtextetEzgjedhura;
+    @FindBy(css = "#select2-institutionSelectAdd-container")
+    public WebElement instiucioniSSbutton;
+
+    //TableData
+    @FindBy(xpath ="//table[@id='services_table']//tbody/tr[1]/td[2]")
+    public WebElement tableSherbimi1;
+    @FindBy(xpath = "//table[@id='services_table']//tbody/tr[1]/td[3]")
+    public WebElement tableKodi1;
+    @FindBy(xpath = "//table[@id='services_table']//tbody/tr[1]/td[4]")
+    public WebElement tableInstitucioni1;
+    @FindBy(xpath = "//table[@id='services_table']//tbody/tr[1]/td[9]")
+    public WebElement tableLlojiSherbimit;
+    //4 checkboxat
+    @FindBy(xpath = "//table[@id='services_table']//tbody/tr[1]/td[5]/input")
+    public WebElement tableMendimDhenie;
+    @FindBy(xpath = "//table[@id='services_table']//tbody/tr[1]/td[6]/input")
+    public WebElement tableProcesimSQDNE;
+    @FindBy(xpath = "//table[@id='services_table']//tbody/tr[1]/td[7]/input")
+    public WebElement tableIntergrimWS;
+    @FindBy(xpath = "//table[@id='services_table']//tbody/tr[1]/td[8]/input")
+    public WebElement tableInaktive;
+    //buttons
+    @FindBy(xpath = "//table[@id='services_table']//tbody/tr[1]/td[10]/div/button[1]")
+    public WebElement editTableButton;
+    @FindBy(xpath = "//table[@id='services_table']//tbody/tr[1]/td[10]/div/button[2]")
+    public WebElement deleteTableButton;
+    @FindBy(css = "#serviceCodeFilter")
+    public WebElement kodiSherbimitFilter;//click enter at the end
+    @FindBy(css = "span[id='select2-institucioniListFilter-container'] span[class='select2-selection__placeholder']")
+    public WebElement institucioniDDFilter;
+    @FindBy(css = "ul[class='select2-selection__rendered']")
+    public WebElement llojiSherbimitFilter;
 
 }

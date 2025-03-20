@@ -10,8 +10,10 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
-
+// kemi marre per baze vetem 1 dokument shoqerues
 public class SherbimiConfigPage {
     SherbimiConfigElements page = new SherbimiConfigElements();
     WebDriverWait wait = new WebDriverWait(BaseInformation.getDriver(), Duration.ofSeconds(10));
@@ -27,10 +29,14 @@ public class SherbimiConfigPage {
     public boolean integrimMeWS;
     public boolean procesimSQDNE;
     public boolean PaMonitorim;
-    public List<String> DokumentSH;
+    public List<String> DokumentSH=new ArrayList<String>();
 
 
-
+    public void waitForModalTitle() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(
+                By.xpath("//h5[@id='lblAddServiceDocumentsModal' and normalize-space(text())='Shto Shërbim']")
+        ));
+    }
     public void shtoSherbim() throws InterruptedException {
         wait.until(ExpectedConditions.elementToBeClickable(page.shtoSherbimButton));
         Thread.sleep(500);
@@ -42,7 +48,11 @@ public class SherbimiConfigPage {
         page.sherbimiSS.sendKeys(value);
         emeriSherbimit=value;
     }
-    public void institucioniPick(String institucioni){
+    public void institucioniPick(String institucioni) throws InterruptedException {
+        wait.until(ExpectedConditions.elementToBeClickable(page.instiucioniSSbutton));
+        page.instiucioniSSbutton.click();
+        Thread.sleep(1000);
+
         for(WebElement item:page.institucioniOptionsSS){
             if (item.getText().contains(institucioni)) {
                 Institucioni=institucioni;
@@ -53,24 +63,26 @@ public class SherbimiConfigPage {
     }
 
 
-    public void klikoCheckBox() throws InterruptedException {
-        Thread.sleep(1500);
-        page.integrimWSCheckBoxSS.click();
-    }
     public void shtimiIdokumentitMeSherbimDheInstitucion(String DSHerbimi, String institucioni) throws InterruptedException {
         String xpath = "//tr[td[2][normalize-space(text())='" + DSHerbimi + "'] " +
                 "and td[3][normalize-space(text())='" + institucioni + "']]//span[@title='Selekto']";
         WebElement spanButton = BaseInformation.getDriver().findElement(By.xpath(xpath));
         Thread.sleep(1500);
         spanButton.click();
+
         DokumentSH.add(DSHerbimi);
     }
-    public void searchDSH(String value){
+    public void searchDSH(String value) throws InterruptedException {
         wait.until(ExpectedConditions.elementToBeClickable(page.dokumenteSHsearchBoxSS));
         page.dokumenteSHsearchBoxSS.click();
         page.dokumenteSHsearchBoxSS.clear();
         page.dokumenteSHsearchBoxSS.sendKeys(value);
+        Thread.sleep(1500);
 
+    }
+    public void searchAndClickDokumentSH(String searchSherbimi,String sherbimi,String institucioni) throws InterruptedException {
+        searchDSH(searchSherbimi);
+        shtimiIdokumentitMeSherbimDheInstitucion(sherbimi,institucioni);
     }
     public void kodiSherbimit(String value){
         wait.until(ExpectedConditions.visibilityOf(page.kodiSherbimitSS));
@@ -153,13 +165,51 @@ public class SherbimiConfigPage {
         wait.until(ExpectedConditions.elementToBeClickable(page.ruajButton));
         page.ruajButton.click();
     }
-    public void fillShtoSherbimin(String sherbimi,String institucioni,String kodiSherbimit,String llojiSherbimit
-    ,boolean wsIntegration, boolean mendimDhenie, boolean inaktive, boolean canDelete, boolean procesim, boolean paMonitorim
-    ,String afatiPergjigjes,String llojiAfatit){
+    public void fillShtoSherbimin(String sherbimi,String institucioni,String kodiSherbimit) throws InterruptedException {
         emeriSherbimit(sherbimi);
         institucioniPick(institucioni);
         kodiSherbimit(kodiSherbimit);
+    }
+    public int dokumenteSHsize(){
+        return page.dokumentetEzgjedhura.size();
+    }
+    public boolean areInaktiveandDeletedDisplayed(){
+        return page.inaktiveCheckBoxSS.isDisplayed()&&page.canDeleteCheckBoxSS.isDisplayed();
+    }
+    public String getTableSherbimiName(){
+        wait.until(ExpectedConditions.visibilityOf(page.tableSherbimi1));
+       return page.tableSherbimi1.getText();
+    }
+    public String getInstitucioniTable(){
+        return page.tableInstitucioni1.getText();
+    }
+    public String getLlojiSherbimitTable(){
+        return page.tableLlojiSherbimit.getText();
+    }
+    public String getTableKodiSherbimiTablet(){
+        return page.tableKodi1.getText();
+    }
+    public boolean getInaktiveTable(){
+        return page.tableInaktive.isEnabled();
+    }
+    public boolean getProcesimTable(){
+        return page.tableProcesimSQDNE.isEnabled();
+    }
+    public boolean getIntegrimiWSTable(){
+        return page.tableIntergrimWS.isEnabled();
+    }
+    public boolean getMendimdhenieTable(){
+        return page.tableMendimDhenie.isEnabled();
+    }
 
+    public boolean areAllTextsContained() throws InterruptedException {
+        List<String> actualTexts = new ArrayList<>();
+
+        for (WebElement element : page.docSHtextetEzgjedhura) {
+            actualTexts.add(element.getText().trim());
+        }
+
+        return new HashSet<>(DokumentSH).containsAll(actualTexts);
     }
     public boolean areProcesimElementsDisplayed(){
         return page.afatiPergjigjesSS.isDisplayed()

@@ -6,14 +6,14 @@ public class Globals {
 
     public static String validEmail = "noter2";
     public static String validPassword = "Zxasqw1@";
-    public static String loginUrl = "http://localhost:5163/Login";
-    public static String homenUrl = "http://localhost:5163/";
-    public static String institucionConfigURL ="http://localhost:5163/InstitutionsConfigurations";
-    public static String NjesitConfigURL ="http://localhost:5163/UnitConfigurations";
-    public static String KonfigurimiDokumenteveShoqeruese = "http://localhost:5163/AccompanyingDocumentsConfigurations";
-    public static String DitetPushimUrl ="http://localhost:5163/HolidaysConfigurations";
-    public static String perdoruesConfigUrl ="http://localhost:5163/UserConfigurations";
-    public static String SherbimetConfigUrl ="http://localhost:5163/ServiceConfigurations";
+    public static String loginUrl = "https://localhost:7166/Login";
+    public static String homenUrl = "https://localhost:7166/";
+    public static String institucionConfigURL ="https://localhost:7166/InstitutionsConfigurations";
+    public static String NjesitConfigURL ="https://localhost:7166/UnitConfigurations";
+    public static String KonfigurimiDokumenteveShoqeruese = "https://localhost:7166/AccompanyingDocumentsConfigurations";
+    public static String DitetPushimUrl ="https://localhost:7166/HolidaysConfigurations";
+    public static String perdoruesConfigUrl ="https://localhost:7166/UserConfigurations";
+    public static String SherbimetConfigUrl ="https://localhost:7166/ServiceConfigurations";
 
 
     public static String generateRandom5DigitNumber() {
