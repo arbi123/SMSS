@@ -6,6 +6,7 @@ import Pages.SherbimiConfigPage;
 import Utilities.BaseInformation;
 import org.apache.poi.ss.formula.functions.T;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -85,7 +86,49 @@ public class SherbimiConfigTest {
     public void searchBox() throws InterruptedException {
         //page.searchByFiltrat("Bashkia klos","Shërbim me vulë","221"); it dont work
         //page.sortTable(); kjo nuk eshte bug se behet tabela unresponisve
+    }
 
+    @Test
+    public void KrijimiISherbimit() throws InterruptedException {
+        page.shtoSherbim();
+        page.waitForModalTitle();
+        page.fillShtoSherbimin("SherbimiTest"+Globals.generateRandom5DigitNumber(),"TTTest","919");
+
+    }
+    @Test
+    public void kerkimiISherbimitTeKrijuarTeSearchBox(){
+
+    }
+    @Test
+    public void verifikimiISherbimitTeTabela(){
+
+    }
+    @Test
+    public void klikojmeEditDheVerifikojmSherbiminTeProfili(){
+
+    }
+    @Test
+    public void editojmeSherbiminMeTeDhenaTeReja(){
+
+    }
+    @Test
+    public void kerkimiISherbimitTeEdituar(){
+
+    }
+    @Test
+    public void verifikimiISherbimitTeEdituarTeTabela(){
+
+    }
+    @Test
+    public void klikojmeEditDheVerifikojmSherbiminEEdituarTeProfili(){
+
+    }
+    @Test
+    public void kerkojmeDheFshimSherbimin(){
+
+    }
+    @Test
+    public void verifikimiIFshirjesSeSherbimit(){
 
     }
     @AfterClass
