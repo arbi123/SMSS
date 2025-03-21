@@ -50,36 +50,6 @@ public class SherbimiConfigTest {
          System.out.println(page.getInstitucioniTable());
 
      }
-//    @Test(priority = 2,enabled = false)
-//    public void shtimiIServiseve() throws InterruptedException {
-//
-//
-//        page.shtoSherbim();
-//        page.waitForModalTitle();
-//        page.fillShtoSherbimin("SherbimiTest"+Globals.generateRandom5DigitNumber(),"TTTest","919");
-//        page.sherbimiFill("Shërbim konsultim të dhënash",true,true);
-//        page.sherbimiFill("Shërbim me vulë",false,false);
-//        Assert.assertFalse(page.areProcesimElementsDisplayed(),"Kane dale elementet e sherbimit me procesim kur ne nuk kemi klikuar atje");
-//        page.sherbimiFill("Shërbim me proçesim","4","Ditë kalendarike",true,true,true,true,true,true);
-//        Assert.assertTrue(page.areProcesimElementsDisplayed(),"Nuk kane dale elemntet e sherbimit me procesim kur ne kemi klikuar atje");
-//        page.searchAndClickDokumentSH("Certifikatë familjare","Certifikatë familjare","Ministria e Brendshme");
-//        page.searchAndClickDokumentSH("Certifikatë personale","Certifikatë personale","Ministria e Brendshme");
-//
-//        Assert.assertTrue(page.areAllDocSHTextsContained(),"Ka mungese nga cfare ke shtuar dhe cfare kane dale");
-//        // page.ruajSherbimin();
-//    }
-
-//    @Test
-//    public void editimiISherbimitTeKrijuar() throws InterruptedException {
-//        page.searchTableEmerSherbimi("testttt");
-//        page.editButton();
-//        System.out.println(page.getEmeriSherbimitMS());
-//        System.out.println(page.getInstitucioniMS());
-//        System.out.println(page.getKodiSherbimitMS());
-//        System.out.println(page.getLlojiSherbimitMS());
-//        System.out.println(page.getInaktiveMS());
-//        System.out.println(page.getFshijeDSHMS());
-//    }
 //    @Test(priority = 2)
 //    public void searchBox() throws InterruptedException {
 //        //page.searchByFiltrat("Bashkia klos","Shërbim me vulë","221"); it dont work
@@ -174,4 +144,5 @@ public class SherbimiConfigTest {
         Thread.sleep(2000);
         driver.quit();
     }
+    //jobs not finished! jobs finished? ion think so
 }
