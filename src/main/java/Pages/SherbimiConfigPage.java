@@ -96,7 +96,8 @@ public class SherbimiConfigPage {
         Thread.sleep(1000);
 
         for(WebElement item:page.institucioniOptionsSS){
-            if (item.getText().contains(institucioni)) {
+            String textItem= item.getText();
+            if (textItem.contains(institucioni)) {
                 Institucioni=institucioni;
                 item.click();
                 break;
@@ -203,7 +204,7 @@ public class SherbimiConfigPage {
             spanElement.click();
         }
     }
-    public void ruajButton(){
+    public void ruajSherbimin(){
         wait.until(ExpectedConditions.elementToBeClickable(page.ruajButton));
         page.ruajButton.click();
     }
@@ -228,20 +229,20 @@ public class SherbimiConfigPage {
     public String getLlojiSherbimitTable(){
         return page.tableLlojiSherbimit.getText();
     }
-    public String getTableKodiSherbimiTablet(){
+    public String getTableKodiSherbimi(){
         return page.tableKodi1.getText();
     }
     public boolean getInaktiveTable(){
-        return page.tableInaktive.isEnabled();
+        return page.tableInaktive.isSelected();
     }
     public boolean getProcesimTable(){
-        return page.tableProcesimSQDNE.isEnabled();
+        return page.tableProcesimSQDNE.isSelected();
     }
     public boolean getIntegrimiWSTable(){
-        return page.tableIntergrimWS.isEnabled();
+        return page.tableIntergrimWS.isSelected();
     }
     public boolean getMendimdhenieTable(){
-        return page.tableMendimDhenie.isEnabled();
+        return page.tableMendimDhenie.isSelected();
     }
 
     public boolean areAllDocSHTextsContained() throws InterruptedException {
@@ -265,18 +266,19 @@ public class SherbimiConfigPage {
     public void waitForModifikoSherbiminTitle() {
         wait.until(ExpectedConditions.visibilityOf(page.modifikoTitle));
     }
-    public void editButton() {
+    public void editButton() throws InterruptedException {
         wait.until(ExpectedConditions.visibilityOf(page.editTableButton));
         wait.until(ExpectedConditions.elementToBeClickable(page.editTableButton));
         page.editTableButton.click();
         waitForModifikoSherbiminTitle();
+        Thread.sleep(2000);
     }
     public String getEmeriSherbimitMS(){
         return page.sherbimiSS.getAttribute("value");
     }
     public String getInstitucioniMS() {
         String text = page.instiucioniSSbutton.getText();
-        return text.replaceAll("[^a-zA-Z0-9\\s]", "").trim();
+        return text.replaceAll("[^\\p{L}\\p{N}\\s]", "").trim();
     }
     public String getKodiSherbimitMS(){
         return page.kodiSherbimitSS.getAttribute("value");
@@ -286,10 +288,10 @@ public class SherbimiConfigPage {
         return select.getFirstSelectedOption().getText();
     }
     public boolean getInaktiveMS(){
-    return  page.inaktiveCheckBoxSS.isSelected();
+    return  page.inaktiveCheckBoxMS.isSelected();
     }
-    public boolean getFshijeDSH() {
-        return page.canDeleteCheckBoxSS.isSelected();
+    public boolean getFshijeDSHMS() {
+        return page.canDeleteCheckBoxMS.isSelected();
     }
     public String getAfatiPergjigjesMS(){
         return page.afatiPergjigjesSS.getAttribute("value");
@@ -299,20 +301,21 @@ public class SherbimiConfigPage {
         return select.getFirstSelectedOption().getText();
     }
     public boolean getMendimdhenieMS(){
-        return page.mendimDhenieCheckBoxSS.isSelected();
+        return page.mendimDhenieCheckBoxMS.isSelected();
     }
     public boolean getIntegrimWSMS(){
-        return page.integrimWSCheckBoxSS.isSelected();
+        return page.integrimWSCheckBoxMS.isSelected();
     }
     public boolean getProcesimSQDNEMS(){
-        return page.procesimCheckBoxSS.isSelected();
+        return page.procesimCheckBoxMS.isSelected();
     }
     public boolean getPaMonitorimMS(){
-        return page.paMonitorimCheckBoxSS.isSelected();
+        return page.paMonitorimCheckBoxMS.isSelected();
     }
     public void searchTableEmerSherbimi(String value) throws InterruptedException {
         wait.until(ExpectedConditions.elementToBeClickable(page.searchBox));
         wait.until(ExpectedConditions.visibilityOf(page.searchBox));
+        Thread.sleep(1500);
         page.searchBox.clear();
         page.searchBox.sendKeys(value);
         Thread.sleep(1500);

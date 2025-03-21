@@ -38,6 +38,21 @@ public class SherbimiConfigElements {
     public WebElement procesimCheckBoxSS;
     @FindBy(xpath = "//input[@id='noMonitoringAdd']/following-sibling::span[@title='Selekto']")
     public WebElement paMonitorimCheckBoxSS;
+    //MS
+    @FindBy(xpath = "//input[@id='inactiveAdd']")
+    public WebElement inaktiveCheckBoxMS;
+    @FindBy(xpath = "//input[@id='wsIntegrationAdd']")
+    public WebElement integrimWSCheckBoxMS;
+    @FindBy(xpath = "//input[@id='thinkingAdd']")
+    public WebElement mendimDhenieCheckBoxMS;
+
+    @FindBy(xpath = "//input[@id='canDeleteAd']")
+    public WebElement canDeleteCheckBoxMS;
+    @FindBy(xpath = "//input[@id='processingSqdneAdd']")
+    public WebElement procesimCheckBoxMS;
+    @FindBy(xpath = "//input[@id='noMonitoringAdd']")
+    public WebElement paMonitorimCheckBoxMS;
+
     //sherbim me procesim
     @FindBy(css = "#deadline-type")
     public WebElement selectLlojiAfatitSS;
