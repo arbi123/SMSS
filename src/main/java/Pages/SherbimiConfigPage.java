@@ -212,6 +212,10 @@ public class SherbimiConfigPage {
         emeriSherbimit(sherbimi);
         institucioniPick(institucioni);
         kodiSherbimit(kodiSherbimit);
+        mendimdhenie=false;
+        procesimSQDNE=false;
+        integrimMeWS=false;
+        PaMonitorim=false;
     }
     public int dokumenteSHsize(){
         return page.dokumentetEzgjedhura.size();

@@ -137,26 +137,34 @@ public class SherbimiConfigTest {
         softAssert.assertTrue(page.areAllDocSHTextsContained(),"Ka mungese nga cfare ke shtuar TE dokumentat dhe cfare kane dale te faqja e modifikimit");
         softAssert.assertAll();
     }
-//    @Test
-//    public void editojmeSherbiminMeTeDhenaTeReja(){
-//
-//    }
-//    @Test
-//    public void kerkimiISherbimitTeEdituar(){
-//
-//    }
-//    @Test
-//    public void verifikimiISherbimitTeEdituarTeTabela(){
-//
-//    }
-//    @Test
-//    public void klikojmeEditDheVerifikojmSherbiminEEdituarTeProfili(){
-//
-//    }
-//    @Test
-//    public void kerkojmeDheFshimSherbimin(){
-//
-//    }
+    @Test(priority = 5)
+    public void editojmeSherbiminMeTeDhenaTeReja() throws InterruptedException {
+        page.fillShtoSherbimin("SherbimiEditedTest"+Globals.generateRandom5DigitNumber(),"Instituti i Ndërtimit","EditedkodiSH"+Globals.generateRandom5DigitNumber());
+         page.sherbimiFill("Shërbim me vulë",false,false);
+         page.ruajSherbimin();
+        Thread.sleep(3000);
+    }
+    @Test(priority = 6)
+    public void kerkimiISherbimitTeEdituar() throws InterruptedException {
+        page.searchTableEmerSherbimi(page.emeriSherbimit);
+
+    }
+    @Test(priority = 7)
+    public void verifikimiISherbimitTeEdituarTeTabela(){
+        softAssert.assertEquals(page.getTableSherbimiName(),page.emeriSherbimit,"Nuk eshte i njejte emeri i sherbimit te tabela");
+        softAssert.assertEquals(page.getTableKodiSherbimi(),page.KodiSherbimit,"Nuk eshte i njejte kodi i sherbimit te tabela");
+        softAssert.assertEquals(page.getInstitucioniTable(),page.Institucioni,"Nuk eshte i njejte institucioni tek tabela");
+        softAssert.assertEquals(page.getMendimdhenieTable(),page.mendimdhenie,"Nuk eshte i njejte checkboxi i mendimdhenies tek tabela");
+        softAssert.assertEquals(page.getProcesimTable(),page.procesimSQDNE,"Nuk eshte i njejte checkboxi i Procesim në SQDNE");
+        softAssert.assertEquals(page.getIntegrimiWSTable(),page.integrimMeWS,"Nuk eshte i njejte checkboxi i Integrim Me Web service");
+        softAssert.assertEquals(page.getInaktiveTable(),page.Inaktive,"Nuk eshte i njejte checkboxi i inaktive tek tabela");
+        softAssert.assertAll();
+    }
+
+    @Test(priority = 8)
+    public void kerkojmeDheFshimSherbimin(){
+       page.fshirjaESherbimit();
+    }
 //    @Test
 //    public void verifikimiIFshirjesSeSherbimit(){
 //
