@@ -173,7 +173,8 @@ public class SherbimiConfigTest {
             softassert.assertEquals(in, value, "Llojji i sherbimit te shfaqura tek tabela nuk jane nje lloj si lloji qe kerkuam");
         }
         softassert.assertAll();
-
+        // do it for both inpit plus expected and fix the bugs and add the otherfilters methods ways
+        //there isa  bug kur selekton doc shoq kthim pergjigje nga backend del i njejti lloj per 2 sherbime
     }
     @AfterClass
     public void quit() throws InterruptedException {
