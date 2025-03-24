@@ -97,14 +97,14 @@ public class SherbimiConfigElements {
     @FindBy(xpath = "//h5[normalize-space(text())='Fshi Shërbimin']")
     public WebElement deleteTitle;
     @FindBy(css = "#serviceCodeFilter")
-    public WebElement kodiSherbimitFilter;//click enter at the end
+    public WebElement kodiSherbimitFilter;
     @FindBy(css = "span[id='select2-institucioniListFilter-container'] span[class='select2-selection__placeholder']")
     public WebElement institucioniDDFilter;
     @FindBy(xpath = "//ul[@id='select2-institucioniListFilter-results']/li")
     public List<WebElement> institucionDDFilter;
     @FindBy(xpath = "//ul[@id='select2-serviceTypeFilter-results']/li")
     public List<WebElement> llojiSherbimitFilterOptions;
-    @FindBy(css = "ul[class='select2-selection__rendered']")
+    @FindBy(xpath = "//span/ul/li/input")
     public WebElement llojiSherbimitFilter;
     @FindBy(xpath = "//table[@id='services_table']/thead/tr/th[1]")
     public WebElement sortFromTheNewest;
@@ -112,6 +112,11 @@ public class SherbimiConfigElements {
     public WebElement modifikoTitle;
     @FindBy(xpath = "//h5[@id='lblAddServiceDocumentsModal' and normalize-space(text())='Shto Shërbim']")
     public WebElement shtoSherbimTitle;
+    @FindBy(xpath = "//span/ul/li[1]")
+    public WebElement llojiSherbimitText;
+    @FindBy(xpath = "//tbody/tr/td[9]")
+    public List<WebElement> llojiSherbimitElements;
+
 
 
 }

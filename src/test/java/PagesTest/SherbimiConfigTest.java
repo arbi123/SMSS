@@ -39,25 +39,10 @@ public class SherbimiConfigTest {
         wait.until(ExpectedConditions.urlToBe(Globals.SherbimetConfigUrl));
         Assert.assertEquals(driver.getCurrentUrl(),Globals.SherbimetConfigUrl);
     }
-     @Test(priority = 2,enabled = false)
-     public void getTableTextAndVerify(){
-         System.out.println(page.getTableSherbimiName());
-         System.out.println(page.getTableKodiSherbimi());
-         System.out.println(page.getInaktiveTable());
-         System.out.println(page.getProcesimTable());
-         System.out.println(page.getIntegrimiWSTable());
-         System.out.println(page.getMendimdhenieTable());
-         System.out.println(page.getLlojiSherbimitTable());
-         System.out.println(page.getInstitucioniTable());
 
-     }
-//    @Test(priority = 2)
-//    public void searchBox() throws InterruptedException {
-//        //page.searchByFiltrat("Bashkia klos","Shërbim me vulë","221"); it dont work
-//        //page.sortTable(); kjo nuk eshte bug se behet tabela unresponisve
-//    }
 
-    @Test(priority = 1)
+
+    @Test(priority = 2)
     public void KrijimiISherbimit() throws InterruptedException {
         page.shtoSherbim();
         page.waitForModalTitle();
@@ -141,10 +126,42 @@ public class SherbimiConfigTest {
 //    public void verifikimiIFshirjesSeSherbimit(){
 //
 //    }
+    @Test(priority = 1)
+    public void filtrimiTesting() throws InterruptedException {
+        page.searchByFiltrat(page.Institucioni,page.,page.KodiSherbimit); //it dont work
+        page.sortTable(); //kjo nuk eshte bug se behet tabela unresponisve
+    }
 
-    @Test(dataProviderClass = LlojiSherbimitDataProvider.class,dataProvider = "excelData")
-    public void verifikimiLLojiSherbimit(boolean mendimdhenie,boolean integrimWS,boolean procesimSQDNE,boolean monitorim,String ExpectedResilt){
-
+    @Test(dataProviderClass = LlojiSherbimitDataProvider.class,dataProvider = "excelData",priority = 2)
+    @AssertInfo({
+            "Kërkojmë në tabelë nje shërbim ",
+            "Klikojmë butonin e editimit për të modifikuar shërbimin",
+            "Vendosim opsionet e checkbox-eve sipas vlerave të dhëna nga data provider Vlerat jane 1.Per mendimdhenie 2.Per integrim me WS 3.Procesim ne SQDNE,4.Pa monitorim",
+            "Ruajmë shërbimin dhe presim për përditësimin e të dhënave",
+            "Verifikojmë që lloji i shërbimit në tabelë përputhet me rezultatin e pritur",
+            "Verifikojmë që të gjitha checkbox-et në tabelë përputhen me vlerat e futura"
+    })
+    public void verifikimiLLojiSherbimit(boolean mendimdhenie,boolean integrimWS,boolean procesimSQDNE,boolean monitorim,String ExpectedResilt) throws InterruptedException {
+        SoftAssert softAssert1 = new SoftAssert();  // <--- new SoftAssert *per test invocation*
+        driver.navigate().refresh();
+        driver.navigate().to(Globals.SherbimetConfigUrl);
+        page.searchTableEmerSherbimi("Sherbim test11");
+        page.editButton();
+        page.setAllCheckboxes(integrimWS,mendimdhenie,false,false,procesimSQDNE,monitorim);
+        page.ruajSherbimin();
+        Thread.sleep(2000);
+        softAssert1.assertEquals(page.getLlojiSherbimitTable(),ExpectedResilt,"Nuk doli sherbimi qe prisnim tek tabela doli: "+page.getLlojiSherbimitTable()+" Prisnim: "+ExpectedResilt);
+        softAssert1.assertEquals(page.getMendimdhenieTable(),page.mendimdhenie,"Nuk eshte i njejte checkboxi i mendimdhenies tek tabela");
+        softAssert1.assertEquals(page.getProcesimTable(),page.procesimSQDNE,"Nuk eshte i njejte checkboxi i Procesim në SQDNE");
+        softAssert1.assertEquals(page.getIntegrimiWSTable(),page.integrimMeWS,"Nuk eshte i njejte checkboxi i Integrim Me Web service");
+        softAssert1.assertEquals(page.getInaktiveTable(),page.Inaktive,"Nuk eshte i njejte checkboxi i inaktive tek tabela");
+        softAssert1.assertAll();
+        Thread.sleep(500);
+    }
+    @Test(dataProvider = )
+    public void findTableData(){
+       page.searchByFiltrat("Kthim përgjigje nga Backend");
+       Assert.assertEquals(page.getLLojiSherbimitFilter(),"String","");
     }
     @AfterClass
     public void quit() throws InterruptedException {

@@ -33,44 +33,46 @@ public class SherbimiConfigPage {
     public boolean procesimSQDNE;
     public boolean PaMonitorim;
     public List<String> DokumentSH=new ArrayList<String>();
+    public String llojiSherbimitTable;
 
 
-//    public void searchByFiltrat(String institucioni,String llojiSherbimit,String kodiSherbimit) throws InterruptedException {
-//    searchInstitucioni(institucioni);
-//    searchLlojiSHerbimit(llojiSherbimit);
-//    searchByKodiSherbimit(kodiSherbimit);
-//
-//    }
-//    public void searchInstitucioni(String value){
-//        wait.until(ExpectedConditions.visibilityOf(page.institucioniDDFilter));
-//        page.institucioniDDFilter.click();
-//        for(WebElement item: page.institucionDDFilter){
-//            String textItem = item.getText();
-//            if(textItem.contains(value)){
-//                item.click();
-//                break;
-//            }
-//        }
-//    }
-//    public void searchByKodiSherbimit(String value){
-//        wait.until(ExpectedConditions.visibilityOf(page.llojiSherbimitFilter));
-//        page.llojiSherbimitFilter.clear();
-//        page.llojiSherbimitFilter.sendKeys(value);
-//        Actions actions = new Actions(BaseInformation.getDriver());
-//        actions.sendKeys(Keys.ENTER).perform();
-//    }
-//    public void searchLlojiSHerbimit(String value) throws InterruptedException {
-//        Thread.sleep(4000);
-//        wait.until(ExpectedConditions.visibilityOf(page.institucioniDDFilter));
-//        page.institucioniDDFilter.click();
-//        for(WebElement item: page.llojiSherbimitFilterOptions){
-//            String textItem= item.getText();
-//            if(textItem.contains(value)){
-//                item.click();
-//                break;
-//            }
-//        }
-//    }
+    public void searchByFiltrat(String institucioni,String llojiSherbimit,String kodiSherbimit) throws InterruptedException {
+    searchInstitucioni(institucioni);
+    Thread.sleep(1500);
+    searchLlojiSHerbimit(llojiSherbimit);
+    searchByKodiSherbimit(kodiSherbimit);
+
+    }
+    public void searchInstitucioni(String value){
+        wait.until(ExpectedConditions.visibilityOf(page.institucioniDDFilter));
+        page.institucioniDDFilter.click();
+        for(WebElement item: page.institucionDDFilter){
+            String textItem = item.getText();
+            if(textItem.contains(value)){
+                item.click();
+                break;
+            }
+        }
+    }
+    public void searchByKodiSherbimit(String value){
+        wait.until(ExpectedConditions.visibilityOf(page.kodiSherbimitFilter));
+        page.kodiSherbimitFilter.clear();
+        page.kodiSherbimitFilter.sendKeys(value);
+        Actions actions = new Actions(BaseInformation.getDriver());
+        actions.sendKeys(Keys.ENTER).perform();
+    }
+    public void searchLlojiSHerbimit(String value) throws InterruptedException {
+        wait.until(ExpectedConditions.visibilityOf(page.llojiSherbimitFilter));
+        page.llojiSherbimitFilter.click();
+        Thread.sleep(2000);
+        for(WebElement item: page.llojiSherbimitFilterOptions){
+            String textItem= item.getText();
+            if(textItem.contains(value)){
+                item.click();
+                break;
+            }
+        }
+    }
     public void sortTable(){
         wait.until(ExpectedConditions.elementToBeClickable(page.sortFromTheNewest));
         page.sortFromTheNewest.click();
@@ -330,6 +332,9 @@ public class SherbimiConfigPage {
         wait.until(ExpectedConditions.visibilityOf(page.deleteTitle));
         wait.until(ExpectedConditions.elementToBeClickable(page.confirmDeleteTableButton));
         page.confirmDeleteTableButton.click();
+    }
+    public String getLLojiSherbimitFilter(){
+        return page.llojiSherbimitText.getText();
     }
 
 
