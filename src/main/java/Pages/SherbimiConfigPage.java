@@ -63,6 +63,7 @@ public class SherbimiConfigPage {
     }
     public void searchLlojiSHerbimit(String value) throws InterruptedException {
         wait.until(ExpectedConditions.visibilityOf(page.llojiSherbimitFilter));
+        page.llojiSherbimitFilter.clear();
         page.llojiSherbimitFilter.click();
         Thread.sleep(2000);
         for(WebElement item: page.llojiSherbimitFilterOptions){
@@ -72,6 +73,7 @@ public class SherbimiConfigPage {
                 break;
             }
         }
+        Thread.sleep(1500);
     }
     public void sortTable(){
         wait.until(ExpectedConditions.elementToBeClickable(page.sortFromTheNewest));
@@ -334,7 +336,18 @@ public class SherbimiConfigPage {
         page.confirmDeleteTableButton.click();
     }
     public String getLLojiSherbimitFilter(){
-        return page.llojiSherbimitText.getText();
+        return page.llojiSherbimitText.getText().replaceAll("[^\\p{L}\\p{N}\\s]", "").trim();
+    }
+    public List<String> llojiElements(){
+        List<String> llojetTable = new ArrayList<>();
+        for(WebElement item: page.llojiSherbimitElements){
+            String text = item.getText().replaceAll("[^\\p{L}\\p{N}\\s]", "").trim();
+            llojetTable.add(text);
+        }
+        return llojetTable;
+    }
+    public boolean isThereAnyData(){
+        return page.llojiSherbimitElements.isEmpty();
     }
 
 

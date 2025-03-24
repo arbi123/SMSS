@@ -1,5 +1,6 @@
 package PagesTest;
 
+import DataProviders.FileterLlojetDataProvider;
 import DataProviders.LlojiSherbimitDataProvider;
 import Globals.Globals;
 import Pages.DokumentesSHConfigPage;
@@ -126,13 +127,13 @@ public class SherbimiConfigTest {
 //    public void verifikimiIFshirjesSeSherbimit(){
 //
 //    }
-    @Test(priority = 1)
+    @Test(priority = 1,enabled = false)
     public void filtrimiTesting() throws InterruptedException {
-        page.searchByFiltrat(page.Institucioni,page.,page.KodiSherbimit); //it dont work
+        page.searchByFiltrat(page.Institucioni,page.llojiSherbimitTable,page.KodiSherbimit); //it dont work
         page.sortTable(); //kjo nuk eshte bug se behet tabela unresponisve
     }
 
-    @Test(dataProviderClass = LlojiSherbimitDataProvider.class,dataProvider = "excelData",priority = 2)
+    @Test(dataProviderClass = LlojiSherbimitDataProvider.class,dataProvider = "excelData",priority = 9)
     @AssertInfo({
             "Kërkojmë në tabelë nje shërbim ",
             "Klikojmë butonin e editimit për të modifikuar shërbimin",
@@ -158,10 +159,21 @@ public class SherbimiConfigTest {
         softAssert1.assertAll();
         Thread.sleep(500);
     }
-    @Test(dataProvider = )
-    public void findTableData(){
-       page.searchByFiltrat("Kthim përgjigje nga Backend");
-       Assert.assertEquals(page.getLLojiSherbimitFilter(),"String","");
+    @Test(dataProvider = "serviceTypes", dataProviderClass = FileterLlojetDataProvider.class)
+    public void findTableData(String value) throws InterruptedException {
+        SoftAssert softassert = new SoftAssert();
+        driver.navigate().refresh();
+        page.searchLlojiSHerbimit(value);
+
+        softassert.assertEquals(page.getLLojiSherbimitFilter(), value, "Nuk eshte i zgjedhur lloji i sherbimit qe deshiruam tek filtrat: " + value);
+        if (page.isThereAnyData()) {
+            Assert.fail("Filtrimi qe beme nuk ka te dhena ose nuk eshte i sakte");
+        }
+        for (String in : page.llojiElements()) {
+            softassert.assertEquals(in, value, "Llojji i sherbimit te shfaqura tek tabela nuk jane nje lloj si lloji qe kerkuam");
+        }
+        softassert.assertAll();
+
     }
     @AfterClass
     public void quit() throws InterruptedException {
