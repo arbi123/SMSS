@@ -1,5 +1,6 @@
 package PagesTest;
 
+import DataProviders.LlojiSherbimitDataProvider;
 import Globals.Globals;
 import Pages.DokumentesSHConfigPage;
 import Pages.SherbimiConfigPage;
@@ -133,12 +134,18 @@ public class SherbimiConfigTest {
 
     @Test(priority = 8)
     public void kerkojmeDheFshimSherbimin(){
-       page.fshirjaESherbimit();
+
+        page.fshirjaESherbimit();
     }
 //    @Test
 //    public void verifikimiIFshirjesSeSherbimit(){
 //
 //    }
+
+    @Test(dataProviderClass = LlojiSherbimitDataProvider.class,dataProvider = "excelData")
+    public void verifikimiLLojiSherbimit(boolean mendimdhenie,boolean integrimWS,boolean procesimSQDNE,boolean monitorim,String ExpectedResilt){
+
+    }
     @AfterClass
     public void quit() throws InterruptedException {
         Thread.sleep(2000);
