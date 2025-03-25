@@ -2,8 +2,12 @@ package StatistikaPages;
 
 import StatistikaPagesElements.StatistikaAplikimeshElements;
 import Utilities.BaseInformation;
+import com.beust.ah.A;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import javax.print.DocFlavor;
@@ -13,10 +17,11 @@ import java.util.List;
 
 public class StatistikaAplikimeshPage {
     StatistikaAplikimeshElements page = new StatistikaAplikimeshElements();
-    WebDriverWait wait = new WebDriverWait(BaseInformation.getDriver(), Duration.ofSeconds(10));
-
+    WebDriverWait wait = new WebDriverWait(BaseInformation.getDriver(), Duration.ofSeconds(30));
+    Actions actions = new Actions(BaseInformation.getDriver());
 
     public void waitUntilNoTableReaload(){
+        wait.until(ExpectedConditions.invisibilityOf(page.loader));
         wait.until(ExpectedConditions.invisibilityOf(page.loaderTable));
     }
     public void selectTipi(String value){
@@ -42,6 +47,8 @@ public class StatistikaAplikimeshPage {
     public void nrAplikimit(String value){
         page.nrIAplikimit.clear();
         page.nrIAplikimit.sendKeys(value);
+        actions.sendKeys(Keys.ENTER).perform();
+        waitUntilNoTableReaload();
     }
     public void selectMinistria(String value){
         wait.until(ExpectedConditions.elementToBeClickable(page.ministriaDD));
@@ -83,6 +90,11 @@ public class StatistikaAplikimeshPage {
         waitUntilNoTableReaload();
 
     }
+    public void shfaqeTeDhena(String value){
+        Select select =new Select(page.shfaqTableData);
+        select.selectByValue(value);
+        waitUntilNoTableReaload();
+    }
     public void selectSherbimtet(String value){
         wait.until(ExpectedConditions.elementToBeClickable(page.sherbimetDD));
         page.sherbimetDD.click();
@@ -96,10 +108,11 @@ public class StatistikaAplikimeshPage {
         }
         waitUntilNoTableReaload();
     }
-    public void selectStatusi(String value){
+    public void selectStatusi(String value) throws InterruptedException {
+        actions.scrollToElement(page.statusiDD).perform();
+        waitUntilNoTableReaload();
         wait.until(ExpectedConditions.elementToBeClickable(page.statusiDD));
         page.statusiDD.click();
-        wait.until(ExpectedConditions.visibilityOf(page.statusiOptions.getFirst()));
         for(WebElement item: page.statusiOptions){
             String Text = item.getText();
             if(Text.contains(value)){
@@ -108,6 +121,11 @@ public class StatistikaAplikimeshPage {
             }
         }
         waitUntilNoTableReaload();
+        Thread.sleep(2000);
+    }
+    public void clearStatus(){
+        wait.until(ExpectedConditions.elementToBeClickable(page.clearButtonX));
+        page.clearButtonX.click();
     }
 
 
@@ -149,9 +167,10 @@ public class StatistikaAplikimeshPage {
         return list;
     }
 
-    public boolean isTableEmpty(){
+    public boolean isTableEmpty() throws InterruptedException {
         waitUntilNoTableReaload();
-        return page.emptyTable.isDisplayed();
+        Thread.sleep(500);
+        return page.tableSize.isEmpty();
     }
     public void mbyllFiltrat(){
         wait.until(ExpectedConditions.elementToBeClickable(page.mbyllFiltrat));
@@ -167,6 +186,7 @@ public class StatistikaAplikimeshPage {
 
     }
     public int tableSize(){
+        waitUntilNoTableReaload();
         return page.tableSize.size();
     }
 

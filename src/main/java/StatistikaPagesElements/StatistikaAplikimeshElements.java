@@ -1,6 +1,7 @@
 package StatistikaPagesElements;
 
 import Utilities.BaseInformation;
+import org.checkerframework.checker.units.qual.C;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -27,20 +28,25 @@ public class StatistikaAplikimeshElements {
     public WebElement ministriaDD;
     @FindBy(xpath = "//span/ul/li[@class='select2-results__option']")
     public List<WebElement> minsitriaOptions;
-    @FindBy(xpath = "/html/body/div[1]/div[3]/div/div[2]/aside/div/div/div/div/div[6]/span/span[1]/span/ul/li/input")
+    @FindBy(xpath = "//span[@data-select2-id='363']/span/span/ul/li/input")
     public WebElement institucionetDD;
     @FindBy(xpath = "//ul[@id='select2-Institution-results']/li/ul/li/span")
     public List<WebElement> institucionetOptions;
     @FindBy(xpath = "//ul[@id='select2-Services-results']/li")
     public List<WebElement> sherbimetOptions;
-    @FindBy(xpath = "/html/body/div[1]/div[3]/div/div[2]/aside/div/div/div/div/div[7]/span/span[1]/span/ul/li/input" )
+    @FindBy(xpath = "//select[@data-select2-id='Institution']/following-sibling::span/span/span/ul/li/input")
     public WebElement institucionetPriteseDD;
-    @FindBy(xpath = "/html/body/div[1]/div[3]/div/div[2]/aside/div/div/div/div/div[8]/span/span[1]/span/ul/li/input")
+    @FindBy(xpath = "//span[@data-select2-id='8139']/span/span/ul/li/input")
     public WebElement sherbimetDD;
-    @FindBy(css = "/html/body/div[1]/div[3]/div/div[2]/aside/div/div/div/div/div[9]/span/span[1]/span/ul/li/input")
+    @FindBy(xpath= "//span[@data-select2-id='1643']/span/span/ul/li/input")
     public WebElement statusiDD;
     @FindBy(xpath = "//ul[@id='select2-statusi-results']/li")
     public List<WebElement> statusiOptions;
+    @FindBy(xpath = "//span[@class='select2-selection__clear']")
+    public WebElement clearButtonX;
+
+    @FindBy(css = ".loader")
+    public WebElement loader;
 
     //filtrim buttons
     @FindBy(css = ".btn.btn-sm.bg-white.rounded-circle.btn-icon.text-primary")

@@ -15,6 +15,9 @@ public class Globals {
     public static String perdoruesConfigUrl ="https://localhost:7166/UserConfigurations";
     public static String SherbimetConfigUrl ="https://localhost:7166/ServiceConfigurations";
 
+    public static String SQDNELoginURL= "https://sqdne.e-albania.info/Login";
+    public static String statistikaAplkimeshURL ="https://sqdne.e-albania.info/RegisteredApplicationsStatistics";
+
 
     public static String generateRandom5DigitNumber() {
         int randomNumber = (int) (Math.random() * 90000) + 10000;
