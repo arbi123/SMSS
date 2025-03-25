@@ -4,6 +4,7 @@ import StatistikaPagesElements.StatistikaAplikimeshElements;
 import Utilities.BaseInformation;
 import com.beust.ah.A;
 import com.fasterxml.jackson.annotation.JacksonAnnotation;
+import org.apache.poi.xwpf.usermodel.BreakType;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -168,7 +169,9 @@ public class StatistikaAplikimeshPage {
 
 
 
-
+    public boolean isInstitucionetPriteseVisible(){
+        return page.institucionetPriteseDD.isDisplayed();
+    }
 
 
 

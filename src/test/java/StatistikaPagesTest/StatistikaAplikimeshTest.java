@@ -107,7 +107,6 @@ public class StatistikaAplikimeshTest {
         String dataMbarimit = "24/01/2025";
         page.selektoDaten(dataFillimit,dataMbarimit);
         List<String> datatAplikimit = page.datatEaplikimit();
-        List<String> datatPerfundimit = page.datatEPerfundimit();
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         try {
@@ -148,6 +147,11 @@ public class StatistikaAplikimeshTest {
         Assert.assertEquals(page.getMinistriaValue(),"Të Gjithë","Ministria duhet te ishte Të Gjithë kur pastruam filtrat");
         Assert.assertEquals(page.getInsitucionetValue(),"Të Gjithë","Institucioni duhet te ishte boTë Gjithësh kur pastruam filtrat");
 
+    }
+    @Test
+    public void SelektimiITipitDheHeqjaEInstitucionevePerkatse(){
+        page.selectTipi("Aplikim për kthim përgjigje");
+        Assert.assertFalse(page.isInstitucionetPriteseVisible(),);
     }
 //    @Test(priority = 2,enabled = false)
 //    public void testimiIpastrimitTeFiltrave(){
