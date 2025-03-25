@@ -36,6 +36,10 @@ public class SherbimiConfigTest {
         softAssert=  new SoftAssert();
     }
     @Test
+    @AssertInfo({
+            "Presim derisa URL-ja të jetë e njëjtë me konfigurimin e shërbimeve",
+            "Verifikojmë që URL-ja aktuale e faqes përputhet me URL-në e pritur"
+    })
     public void navigimiNeSherbimetService(){
         wait.until(ExpectedConditions.urlToBe(Globals.SherbimetConfigUrl));
         Assert.assertEquals(driver.getCurrentUrl(),Globals.SherbimetConfigUrl);
@@ -44,6 +48,13 @@ public class SherbimiConfigTest {
 
 
     @Test(priority = 2)
+    @AssertInfo({
+            "Kryhet shtimi i një shërbimi të ri me një emër unik dhe kod unik",
+            "Verifikohet që elementet e procesimit të shfaqen pasi aktivizohet opsioni 'Shërbim me proçesim'",
+            "Shtohen dhe lidhen dokumentet e nevojshme për shërbimin e krijuar",
+            "Pasi ruhet shërbimi, duhet të konfirmohet që është ruajtur me sukses"
+    })
+
     public void KrijimiISherbimit() throws InterruptedException {
         page.shtoSherbim();
         page.waitForModalTitle();
@@ -59,6 +70,13 @@ public class SherbimiConfigTest {
         page.searchTableEmerSherbimi(page.emeriSherbimit);
     }
     @Test(priority = 3)
+    @AssertInfo({
+            "Kërkimi i shërbimit të sapokrijuar në search box dhe konfirmimi që ekziston në tabelë",
+            "Verifikohet që emri i shërbimit në tabelë përputhet me atë të krijuar",
+            "Verifikohet që kodi i shërbimit në tabelë është i njëjtë me atë të krijuar",
+            "Verifikohet që institucioni i shërbimit përputhet me të dhënat e krijuara",
+            "Verifikohen checkbox-et e mendimdhënies, procesimit, integrimit me Web Service dhe statusit inaktiv"
+    })
     public void verifikimiISherbimitTeTabela(){
         softAssert.assertEquals(page.getTableSherbimiName(),page.emeriSherbimit,"Nuk eshte i njejte emeri i sherbimit te tabela");
         softAssert.assertEquals(page.getTableKodiSherbimi(),page.KodiSherbimit,"Nuk eshte i njejte kodi i sherbimit te tabela");
@@ -70,6 +88,15 @@ public class SherbimiConfigTest {
         softAssert.assertAll();
     }
     @Test(priority = 4)
+    @AssertInfo({
+            "Klikohet butoni Edit dhe verifikohet shërbimi i profilit me atë të krijuar",
+            "Verifikohet që emri i shërbimit në ekranin e modifikimit përputhet me atë të krijuar",
+            "Verifikohet institucioni, kodi dhe lloji i shërbimit në ekranin e modifikimit",
+            "Verifikohet që butonat 'Inaktive' dhe 'Mund të Fshije' janë të saktë",
+            "Nëse shërbimi është me përpunim, verifikohen elementët e tij",
+            "Kontrollohet nëse fushat e procesimit shfaqen vetëm kur duhet",
+            "Verifikohen të gjitha dokumentet e lidhura me shërbimin për të siguruar që nuk ka mungesa"
+    })
     public void klikojmeEditDheVerifikojmSherbiminTeProfili() throws InterruptedException {
         page.editButton();
         softAssert.assertEquals(page.getEmeriSherbimitMS(),page.emeriSherbimit,"Emeri Sherbimit eshte i ndrryshem tek modifiko sherbimin nga ai qe ke krijuar");
@@ -95,6 +122,14 @@ public class SherbimiConfigTest {
         softAssert.assertAll();
     }
     @Test(priority = 5)
+    @AssertInfo({
+            "Plotësohet formulari për modifikimin e shërbimit me të dhëna të reja",
+            "Verifikohet që emri i ri i shërbimit është korrekt",
+            "Verifikohet që institucioni i ri është ruajtur siç pritet",
+            "Verifikohet që kodi i ri i shërbimit është ruajtur saktë",
+            "Modifikohet lloji i shërbimit dhe verifikohet që përditësimi ka ndodhur me sukses",
+            "Ruhet shërbimi dhe sigurohet që nuk ka gabime gjatë ruajtjes"
+    })
     public void editojmeSherbiminMeTeDhenaTeReja() throws InterruptedException {
         page.fillShtoSherbimin("SherbimiEditedTest"+Globals.generateRandom5DigitNumber(),"Instituti i Ndërtimit","EditedkodiSH"+Globals.generateRandom5DigitNumber());
          page.sherbimiFill("Shërbim me vulë",false,false);
@@ -107,6 +142,16 @@ public class SherbimiConfigTest {
 
     }
     @Test(priority = 7)
+    @AssertInfo({
+            "Verifikohet që emri i shërbimit i edituar është korrekt në tabelë",
+            "Sigurohet që kodi i shërbimit i edituar përputhet me atë të ruajtur",
+            "Institucioni i shërbimit duhet të jetë i njëjtë me atë të edituar",
+            "Verifikohet checkbox-i i mendimdhenies në tabelë",
+            "Konfirmohet që opsioni 'Procesim në SQDNE' është i saktë pas editimit",
+            "Sigurohet që opsioni 'Integrim Me Web Service' përputhet me të dhënat e edituara",
+            "Verifikohet që statusi i inaktivitetit është i saktë pas përditësimit",
+            "Ekzekutohet assertAll() për të siguruar që të gjitha verifikimet janë kryer me sukses"
+    })
     public void verifikimiISherbimitTeEdituarTeTabela(){
         softAssert.assertEquals(page.getTableSherbimiName(),page.emeriSherbimit,"Nuk eshte i njejte emeri i sherbimit te tabela");
         softAssert.assertEquals(page.getTableKodiSherbimi(),page.KodiSherbimit,"Nuk eshte i njejte kodi i sherbimit te tabela");
@@ -119,19 +164,15 @@ public class SherbimiConfigTest {
     }
 
     @Test(priority = 8)
+    @AssertInfo({
+            "Sigurohet që shërbimi i fshirë nuk ekziston më në tabelë",
+            "Verifikohet që nuk ka të dhëna për shërbimin e fshirë pas operacionit",
+            "Konfirmohet që operacioni i fshirjes është i suksesshëm dhe shërbimi është zhdukur"
+    })
     public void kerkojmeDheFshimSherbimin(){
-
         page.fshirjaESherbimit();
     }
-//    @Test
-//    public void verifikimiIFshirjesSeSherbimit(){
-//
-//    }
-    @Test(priority = 1,enabled = false)
-    public void filtrimiTesting() throws InterruptedException {
-        page.searchByFiltrat(page.Institucioni,page.llojiSherbimitTable,page.KodiSherbimit); //it dont work
-        page.sortTable(); //kjo nuk eshte bug se behet tabela unresponisve
-    }
+
 
     @Test(dataProviderClass = LlojiSherbimitDataProvider.class,dataProvider = "excelData",priority = 9)
     @AssertInfo({
@@ -150,7 +191,7 @@ public class SherbimiConfigTest {
         page.editButton();
         page.setAllCheckboxes(integrimWS,mendimdhenie,false,false,procesimSQDNE,monitorim);
         page.ruajSherbimin();
-        Thread.sleep(2000);
+        Thread.sleep(1500);
         softAssert1.assertEquals(page.getLlojiSherbimitTable(),ExpectedResilt,"Nuk doli sherbimi qe prisnim tek tabela doli: "+page.getLlojiSherbimitTable()+" Prisnim: "+ExpectedResilt);
         softAssert1.assertEquals(page.getMendimdhenieTable(),page.mendimdhenie,"Nuk eshte i njejte checkboxi i mendimdhenies tek tabela");
         softAssert1.assertEquals(page.getProcesimTable(),page.procesimSQDNE,"Nuk eshte i njejte checkboxi i Procesim në SQDNE");
@@ -159,8 +200,16 @@ public class SherbimiConfigTest {
         softAssert1.assertAll();
         Thread.sleep(500);
     }
-    @Test(dataProvider = "serviceTypes", dataProviderClass = FileterLlojetDataProvider.class)
-    public void findTableData(String value) throws InterruptedException {
+    @Test(dataProvider = "serviceTypes", dataProviderClass = FileterLlojetDataProvider.class,priority = 10)
+    @AssertInfo({
+            "Testim i funksionalitetit të filtrimit të llojeve të shërbimeve",
+            "Verifikimi i mekanizmit të kërkimit dhe filtrimit për lloje specifike shërbimesh",
+            "Konfirmimi i përputhjes së filtrit me hyrjen e përdoruesit",
+            "Sigurimi që të dhënat e tabelës pasqyrojnë saktë llojin e shërbimit të zgjedhur",
+            "Kontrollimi që rezultatet e filtruara përmbajnë vetëm llojin e specifikuar të shërbimit",
+            "Vlerësimi i sjelljes së filtrit për inpute të ndryshme të llojeve të shërbimeve"
+    })
+    public void findTableData(String value,String ExpectedValue) throws InterruptedException {
         SoftAssert softassert = new SoftAssert();
         driver.navigate().refresh();
         page.searchLlojiSHerbimit(value);
@@ -170,16 +219,16 @@ public class SherbimiConfigTest {
             Assert.fail("Filtrimi qe beme nuk ka te dhena ose nuk eshte i sakte");
         }
         for (String in : page.llojiElements()) {
-            softassert.assertEquals(in, value, "Llojji i sherbimit te shfaqura tek tabela nuk jane nje lloj si lloji qe kerkuam");
+            softassert.assertEquals(in, ExpectedValue, "Llojji i sherbimit te shfaqura tek tabela nuk jane nje lloj si lloji qe kerkuam");
         }
         softassert.assertAll();
         // do it for both inpit plus expected and fix the bugs and add the otherfilters methods ways
         //there isa  bug kur selekton doc shoq kthim pergjigje nga backend del i njejti lloj per 2 sherbime
     }
+
     @AfterClass
     public void quit() throws InterruptedException {
         Thread.sleep(2000);
         driver.quit();
     }
-    //jobs not finished! jobs finished? ion think so
 }

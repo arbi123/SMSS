@@ -13,8 +13,8 @@ import java.util.Iterator;
 public class FileterLlojetDataProvider {
     @DataProvider(name = "serviceTypes")
     public Object[][] getServiceTypes() throws IOException {
-        String filePath = "C:\\Users\\Arbi.topi\\IdeaProjects\\TestimTemp\\ExcelFiles\\LlojetEsherbimitFilter.xlsx";  // Change this path
-        String sheetName = "Sheet1"; // Adjust if needed
+        String filePath = "C:\\Users\\Arbi.topi\\IdeaProjects\\TestimTemp\\ExcelFiles\\LlojetEsherbimitFilter.xlsx";  // Ndrysho këtë path sipas nevojës
+        String sheetName = "Sheet1"; // Ndrysho nëse është e nevojshme
         return readExcelData(filePath, sheetName);
     }
 
@@ -23,18 +23,17 @@ public class FileterLlojetDataProvider {
              Workbook workbook = new XSSFWorkbook(fis)) {
 
             Sheet sheet = workbook.getSheet(sheetName);
-            int rowCount = sheet.getLastRowNum();  // Number of rows (excluding header)
-            Object[][] data = new Object[rowCount][1]; // 1 column (String)
+            int rowCount = sheet.getLastRowNum(); // Merr numrin total të rreshtave (pa përfshirë header-in)
 
-            // Iterate from row 1 (skip header row 0)
-            Iterator<Row> rowIterator = sheet.iterator();
-            rowIterator.next(); // Skip header
+            Object[][] data = new Object[rowCount][2]; // Numri i rreshtave dhe 2 kolona
 
-            int i = 0;
-            while (rowIterator.hasNext()) {
-                Row row = rowIterator.next();
-                data[i][0] = row.getCell(0).getStringCellValue().trim(); // Read as String
-                i++;
+            for (int i = 0; i < rowCount; i++) {
+                Row row = sheet.getRow(i + 1); // Rreshti aktual
+
+                if (row != null) {
+                    data[i][0] = row.getCell(0) != null ? row.getCell(0).getStringCellValue().trim() : "";
+                    data[i][1] = row.getCell(1) != null ? row.getCell(1).getStringCellValue().trim() : "";
+                }
             }
             return data;
         }

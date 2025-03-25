@@ -151,7 +151,7 @@ public class SherbimiConfigPage {
         llojiAfatit=value;
     }
     public void setAllCheckboxes(boolean wsIntegration, boolean mendimDhenie, boolean inaktive, boolean canDelete, boolean procesim, boolean paMonitorim) throws InterruptedException {
-        Thread.sleep(1500);
+        Thread.sleep(1000);
         setCheckBoxState(page.integrimWSCheckBoxSS, wsIntegration);
         setCheckBoxState(page.mendimDhenieCheckBoxSS, mendimDhenie);
         setCheckBoxState(page.inaktiveCheckBoxSS, inaktive);
