@@ -1,14 +1,11 @@
-package PagesTest;
+package ConfigPagesTest;
 
 import DataProviders.FileterLlojetDataProvider;
 import DataProviders.LlojiSherbimitDataProvider;
 import Globals.Globals;
-import Pages.DokumentesSHConfigPage;
-import Pages.SherbimiConfigPage;
+import ConfigPages.SherbimiConfigPage;
 import Utilities.BaseInformation;
-import org.apache.poi.ss.formula.functions.T;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;

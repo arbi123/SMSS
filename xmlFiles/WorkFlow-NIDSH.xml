@@ -7,7 +7,7 @@
     </listeners>
     <test verbose="2" preserve-order="true" name="C:/Users/Arbi.topi/IdeaProjects/TestimTemp/src/test/java">
         <classes>
-            <class name="PagesTest.IdentifikimTest"/>
+            <class name="ConfigPagesTest.IdentifikimTest"/>
             <class name="WorkFlowTest.NjesiInstitucionDocShoqeruara"/>
         </classes>
     </test>

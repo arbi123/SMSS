@@ -1,15 +1,12 @@
-package Pages;
+package ConfigPages;
 
-import Elements.DitetPushimElements;
-import Elements.NjesitKonfigElements;
+import ConfigPagesElements.DitetPushimElements;
 import Utilities.BaseInformation;
-import org.openqa.selenium.AcceptedW3CCapabilityKeys;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.security.Key;
 import java.time.Duration;
 
 public class DitetPushimPage {

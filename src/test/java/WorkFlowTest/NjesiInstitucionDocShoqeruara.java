@@ -1,9 +1,9 @@
 package WorkFlowTest;
 
 import Globals.Globals;
-import Pages.DokumentesSHConfigPage;
-import Pages.InstitucioniKofigPage;
-import Pages.NjesitKonfigPage;
+import ConfigPages.DokumentesSHConfigPage;
+import ConfigPages.InstitucioniKofigPage;
+import ConfigPages.NjesitKonfigPage;
 import Utilities.BaseInformation;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;

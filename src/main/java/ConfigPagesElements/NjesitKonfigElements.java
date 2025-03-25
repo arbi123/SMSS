@@ -1,4 +1,4 @@
-package Elements;
+package ConfigPagesElements;
 
 import Utilities.BaseInformation;
 import org.openqa.selenium.WebElement;

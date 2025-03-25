@@ -1,9 +1,8 @@
-package Pages;
+package ConfigPages;
 
-import Elements.InstitucionKonfigElements;
+import ConfigPagesElements.InstitucionKonfigElements;
 import Globals.Globals;
 import Utilities.BaseInformation;
-import com.fasterxml.jackson.databind.ser.Serializers;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;

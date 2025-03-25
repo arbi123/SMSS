@@ -1,8 +1,7 @@
-package PagesTest;
+package ConfigPagesTest;
 
 import Globals.Globals;
-import Pages.DokumentesSHConfigPage;
-import Pages.PerdoruesConfigPage;
+import ConfigPages.PerdoruesConfigPage;
 import Utilities.BaseInformation;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -10,13 +9,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import java.time.Duration;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 public class PerdoruesConfigTest {
     PerdoruesConfigPage page;

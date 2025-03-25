@@ -2,7 +2,7 @@
 package Listeners;
 
 
-import PagesTest.AssertInfo;
+import ConfigPagesTest.AssertInfo;
 import Utilities.BaseInformation;
 import Utilities.ExtentReporterNG;
 import com.aventstack.extentreports.ExtentReports;

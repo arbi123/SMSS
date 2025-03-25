@@ -1,11 +1,9 @@
-package PagesTest;
+package ConfigPagesTest;
 
-import Elements.NjesitKonfigElements;
 import Globals.Globals;
-import Pages.InstitucioniKofigPage;
-import Pages.NjesitKonfigPage;
+import ConfigPages.InstitucioniKofigPage;
+import ConfigPages.NjesitKonfigPage;
 import Utilities.BaseInformation;
-import com.beust.ah.A;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;

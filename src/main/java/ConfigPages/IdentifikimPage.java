@@ -1,6 +1,6 @@
-package Pages;
+package ConfigPages;
 
-import Elements.IdentifikimElements;
+import ConfigPagesElements.IdentifikimElements;
 import Globals.Globals;
 
 

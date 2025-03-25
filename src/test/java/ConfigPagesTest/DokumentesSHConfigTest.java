@@ -1,10 +1,8 @@
-package PagesTest;
+package ConfigPagesTest;
 
 import Globals.Globals;
-import Pages.DokumentesSHConfigPage;
+import ConfigPages.DokumentesSHConfigPage;
 import Utilities.BaseInformation;
-import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.Status;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;

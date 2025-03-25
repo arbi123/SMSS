@@ -1,9 +1,7 @@
-package Pages;
+package ConfigPages;
 
-import Elements.NjesitKonfigElements;
+import ConfigPagesElements.NjesitKonfigElements;
 import Utilities.BaseInformation;
-import com.fasterxml.jackson.databind.ser.Serializers;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 

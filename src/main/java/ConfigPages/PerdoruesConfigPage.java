@@ -1,7 +1,6 @@
-package Pages;
+package ConfigPages;
 
-import Elements.DitetPushimElements;
-import Elements.PerdoruesConfigElements;
+import ConfigPagesElements.PerdoruesConfigElements;
 import Utilities.BaseInformation;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;

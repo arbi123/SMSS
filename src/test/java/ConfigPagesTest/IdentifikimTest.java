@@ -1,11 +1,9 @@
-package PagesTest;
+package ConfigPagesTest;
 
 import Globals.Globals;
-import Pages.IdentifikimPage;
+import ConfigPages.IdentifikimPage;
 import Utilities.BaseInformation;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Wait;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
