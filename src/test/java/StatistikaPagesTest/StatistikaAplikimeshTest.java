@@ -6,6 +6,7 @@ import DataProviders.MinistriteFilterDP;
 import Globals.Globals;
 import StatistikaPages.StatistikaAplikimeshPage;
 import Utilities.BaseInformation;
+import com.beust.ah.A;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -57,6 +58,8 @@ public class StatistikaAplikimeshTest {
         Assert.assertEquals(page.tableSize(),50,"");
         page.shfaqeTeDhena("100");
         Assert.assertEquals(page.tableSize(),100,"");
+        page.shfaqeTeDhena("10");
+        Assert.assertEquals(page.tableSize(),10,"");
     }
 
     @Test(priority = 2,enabled = false)
@@ -68,7 +71,10 @@ public class StatistikaAplikimeshTest {
         softAssert.assertEquals(page.getSherbimiTable(),"Vërtetim Debie OSHEE");
         softAssert.assertEquals(page.getNiptID(),"K00329058K");
         softAssert.assertEquals(page.getStatusTABLE(),"Regjistruar aplikimi në E-Albania");
-        softAssert.assertAll();//works
+        softAssert.assertAll();
+        page.clearNraplikimit();
+
+
     }
     @Test(priority = 3,dataProvider = "statusTypes",dataProviderClass = LlojiStatuseveDP.class,enabled = false)
     public void FiltrimiMeStatusinDheVerifikimi(String value) throws InterruptedException {
@@ -86,8 +92,9 @@ public class StatistikaAplikimeshTest {
         page.clearStatus();
         softAssert.assertAll();//dont work
     }
-    @Test(priority = 2,dataProviderClass = MinistriteFilterDP.class,dataProvider = "ministriaTypes",enabled = false)//works
+    @Test(priority = 3,dataProviderClass = MinistriteFilterDP.class,dataProvider = "ministriaTypes")
     public void ministriaAndInstitucionetFiltrim(String value) throws InterruptedException {
+
         page.selectMinistria(value);
         Thread.sleep(3000);
         page.clickInsitucionet();
@@ -95,7 +102,7 @@ public class StatistikaAplikimeshTest {
         Assert.assertEquals(page.strongInstitucionText(),value,"Nuk jan te njejta");
     }
     @Test(priority = 2)
-    public void filtrimiIDatesSearching(){
+    public void filtrimiIDatesSearching() throws InterruptedException {
         String dataFillimit ="22/01/2025";
         String dataMbarimit = "24/01/2025";
         page.selektoDaten(dataFillimit,dataMbarimit);
@@ -104,46 +111,50 @@ public class StatistikaAplikimeshTest {
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         try {
-            // Konverto datat e inputuara në Date për kontroll të kufijve (opsionale)
+            // Konverto datat e inputuara në Date për kufizimet
             Date fillimInput = sdf.parse(dataFillimit);
             Date mbarimInput = sdf.parse(dataMbarimit);
 
-            // Loop për të kontrolluar secilin rresht
+            // Loop për secilin rresht të datave të aplikimit
             for (int i = 0; i < datatAplikimit.size(); i++) {
-                // Merr tekstin e datës së aplikimit dhe e përfundimit për rreshtin i
                 String dataAplikimitText = datatAplikimit.get(i).trim();
-                String dataPerfundimitText = datatPerfundimit.get(i).trim();
-
-                // Konverto datën e aplikimit në objekt Date
                 Date dataAplikimitDate = sdf.parse(dataAplikimitText);
 
-                // Nëse data e përfundimit është "-", anashkalo kontrollin për këtë rresht
-                if (dataPerfundimitText.equals("-")) {
-                    System.out.println("ℹ️ Për rreshtin " + (i+1) + ", data e përfundimit është '-' dhe nuk kontrollohet.");
-                    continue;
-                }
-
-                // Konverto datën e përfundimit në objekt Date
-                Date dataPerfundimitDate = sdf.parse(dataPerfundimitText);
-
-                // Krahaso se data e aplikimit është më e vogël ose e barabartë me datën e përfundimit
-                if (dataAplikimitDate.before(dataPerfundimitDate) || dataAplikimitDate.equals(dataPerfundimitDate)) {
-                    System.out.println("✅ Për rreshtin " + (i+1) + ": Data e aplikimit (" + dataAplikimitText +
-                            ") është më e vogël ose e barabartë me datën e përfundimit (" + dataPerfundimitText + ").");
-                } else {
-                    System.out.println("❌ Për rreshtin " + (i+1) + ": Data e aplikimit (" + dataAplikimitText +
-                            ") nuk është më e vogël se data e përfundimit (" + dataPerfundimitText + ").");
-                }
+                // Verifikon që data e aplikimit është midis datave të inputuara (ose e barabartë me to)
+                Assert.assertTrue(
+                        (dataAplikimitDate.equals(fillimInput) || dataAplikimitDate.after(fillimInput)) &&
+                                (dataAplikimitDate.equals(mbarimInput) || dataAplikimitDate.before(mbarimInput)),
+                        "Rreshti " + (i+1) + ": Data e aplikimit (" + dataAplikimitText +
+                                ") nuk është brenda intervalit [" + dataFillimit + " - " + dataMbarimit + "]."
+                );
             }
         } catch (ParseException e) {
-            System.out.println("⚠️ Gabim gjatë parsimit të datave: " + e.getMessage());
+            Assert.fail("Gabim gjatë parsimit të datave: " + e.getMessage());
         }
+
+
     }
 
-    @Test
-    public void pastrimiFiltrave(){
+    @Test(priority = 4)
+    public void pastrimiFiltrave() throws InterruptedException {
         page.pastroFiltrat();
+        page.selectTipi("Aplikim për dokumentacion shoqërues");
+        page.nrAplikimit("LC-6446-03-2025");
+        page.selectMinistria("Bashkia");
+        page.selectInstitucionet("Bashkia Tiranë");
+        page.pastroFiltrat();
+        Assert.assertEquals(page.getTipiValue(),"Të Gjithë","Tipi duhet te ishte Të Gjithë kur pastruam filtrat");
+        Assert.assertEquals(page.getNRaplikimitValue(),"","Nr Aplikimit duhet te ishte bosh kur pastruam filtrat");
+        Assert.assertEquals(page.getMinistriaValue(),"Të Gjithë","Ministria duhet te ishte Të Gjithë kur pastruam filtrat");
+        Assert.assertEquals(page.getInsitucionetValue(),"Të Gjithë","Institucioni duhet te ishte boTë Gjithësh kur pastruam filtrat");
+
     }
+//    @Test(priority = 2,enabled = false)
+//    public void testimiIpastrimitTeFiltrave(){
+//        page.nrAplikimit("999");
+//        page.pastroFiltrat();
+//        Assert.assertEquals(page.getNRaplikimitValue(),"","Nr Aplikimit duhet te ishte bosh kur pastruam filtrat");
+//    }
 
 
     @AfterClass

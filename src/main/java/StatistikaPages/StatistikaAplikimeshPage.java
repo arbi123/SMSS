@@ -19,7 +19,7 @@ import java.util.List;
 
 public class StatistikaAplikimeshPage {
     StatistikaAplikimeshElements page = new StatistikaAplikimeshElements();
-    WebDriverWait wait = new WebDriverWait(BaseInformation.getDriver(), Duration.ofSeconds(30));
+    WebDriverWait wait = new WebDriverWait(BaseInformation.getDriver(), Duration.ofSeconds(100));
     Actions actions = new Actions(BaseInformation.getDriver());
 
     public void waitUntilNoTableReaload(){
@@ -30,7 +30,7 @@ public class StatistikaAplikimeshPage {
     public void selectTipi(String value){
         wait.until(ExpectedConditions.elementToBeClickable(page.tipiDD));
         page.tipiDD.click();
-        wait.until(ExpectedConditions.visibilityOf(page.tipiOptions.getFirst()));
+        wait.until(ExpectedConditions.visibilityOf(page.tipiOptions.get(0)));
         for(WebElement item: page.tipiOptions){
             String Text = item.getText();
             if(Text.contains(value)){
@@ -40,7 +40,7 @@ public class StatistikaAplikimeshPage {
         }
         waitUntilNoTableReaload();
     }
-    public void selektoDaten(String dataFillimit,String dataMbarimit){
+    public void selektoDaten(String dataFillimit,String dataMbarimit) throws InterruptedException {
         wait.until(ExpectedConditions.elementToBeClickable(page.nisjaEdatesTB));
         page.nisjaEdatesTB.clear();
         page.nisjaEdatesTB.click();
@@ -48,7 +48,8 @@ public class StatistikaAplikimeshPage {
         page.fundiEdatesTB.clear();
         page.fundiEdatesTB.click();
         page.fundiEdatesTB.sendKeys(dataMbarimit);
-        actions.sendKeys(Keys.TAB).perform();
+        actions.sendKeys(Keys.ENTER).perform();
+        Thread.sleep(10000);
         waitUntilNoTableReaload();
     }
     public void nrAplikimit(String value){
@@ -61,7 +62,7 @@ public class StatistikaAplikimeshPage {
         actions.sendKeys(Keys.TAB).perform();
         wait.until(ExpectedConditions.elementToBeClickable(page.ministriaDD));
         page.ministriaDD.click();
-        wait.until(ExpectedConditions.visibilityOf(page.minsitriaOptions.getFirst()));
+        wait.until(ExpectedConditions.visibilityOf(page.minsitriaOptions.get(0)));
         for(WebElement item: page.minsitriaOptions){
             String Text = item.getText();
             if(Text.contains(value)){
@@ -78,7 +79,7 @@ public class StatistikaAplikimeshPage {
     public void selectInstitucionet(String value){
         wait.until(ExpectedConditions.elementToBeClickable(page.institucionetDD));
         page.institucionetDD.click();
-        wait.until(ExpectedConditions.visibilityOf(page.institucionetOptions.getFirst()));
+        wait.until(ExpectedConditions.visibilityOf(page.institucionetOptions.get(0)));
         for(WebElement item: page.institucionetOptions){
             String Text = item.getText();
             if(Text.contains(value)){
@@ -88,10 +89,10 @@ public class StatistikaAplikimeshPage {
         }
         waitUntilNoTableReaload();
     }
-    public void selectInstitucioniPrites(String value){
+    public void selectInstitucioniPrites(String value) throws InterruptedException {
+        Thread.sleep(2000);
         wait.until(ExpectedConditions.elementToBeClickable(page.institucionetPriteseDD));
         page.institucionetPriteseDD.click();
-        wait.until(ExpectedConditions.visibilityOf(page.institucionetOptions.getFirst()));
         for(WebElement item: page.institucionetOptions){
             String Text = item.getText();
             if(Text.contains(value)){
@@ -101,6 +102,9 @@ public class StatistikaAplikimeshPage {
         }
         waitUntilNoTableReaload();
 
+    }
+    public void clearNraplikimit(){
+        page.nrIAplikimit.clear();
     }
     public void shfaqeTeDhena(String value){
         Select select =new Select(page.shfaqTableData);
@@ -241,5 +245,26 @@ public class StatistikaAplikimeshPage {
     }
     public String getStatusTABLE(){
         return page.statusiTABLE.getText();
+    }
+    public String getTipiValue(){
+        return page.tipiDD.getText();
+    }
+    public String getNRaplikimitValue(){
+        return page.nrIAplikimit.getAttribute("value");
+    }
+    public String getMinistriaValue(){
+        return page.ministriaDD.getText();
+    }
+    public String getInsitucionetValue(){
+        return page.institucionetDD.getAttribute("placeholder");
+    }
+    public String getInstitucionetPriteseValue(){
+        return page.institucionetPriteseDD.getAttribute("placeholder");
+    }
+    public String getSherbimetValue(){
+        return page.sherbimetDD.getAttribute("placeholder");
+    }
+    public String getStatusiValue(){
+        return page.statusiDD.getAttribute("placeholder");
     }
 }

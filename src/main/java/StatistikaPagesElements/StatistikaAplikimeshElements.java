@@ -34,11 +34,11 @@ public class StatistikaAplikimeshElements {
     public List<WebElement> institucionetOptions;
     @FindBy(xpath = "//ul[@id='select2-Services-results']/li")
     public List<WebElement> sherbimetOptions;
-    @FindBy(xpath = "//select[@data-select2-id='DerguarTek']/following-sibling::span/span/span/ul/li/input")
+    @FindBy(xpath = "//ul[@id='select2-DerguarTek-results']/li/ul/li/span")
     public WebElement institucionetPriteseDD;
-    @FindBy(xpath = "//span[@data-select2-id='8139']/span/span/ul/li/input")
+    @FindBy(xpath = "//select[@data-select2-id='Services']/following-sibling::span/span/span/ul/li/input")
     public WebElement sherbimetDD;
-    @FindBy(xpath= "//span[@data-select2-id='1643']/span/span/ul/li/input")
+    @FindBy(xpath= "//select[@data-select2-id='statusi']/following-sibling::span/span/span/ul/li/input")
     public WebElement statusiDD;
     @FindBy(xpath = "//ul[@id='select2-statusi-results']/li")
     public List<WebElement> statusiOptions;
@@ -88,5 +88,6 @@ public class StatistikaAplikimeshElements {
     public List<WebElement> dataAplikimit;
     @FindBy(xpath = "//tbody[1]/tr/td[10]")
     public List<WebElement> dataEPerfundimitTeAplikimit;
+
 
 }
