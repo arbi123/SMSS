@@ -28,13 +28,13 @@ public class StatistikaAplikimeshElements {
     public WebElement ministriaDD;
     @FindBy(xpath = "//span/ul/li[@class='select2-results__option']")
     public List<WebElement> minsitriaOptions;
-    @FindBy(xpath = "//span[@data-select2-id='363']/span/span/ul/li/input")
+    @FindBy(xpath = "//select[@data-select2-id='Institution']/following-sibling::span/span/span/ul/li/input")
     public WebElement institucionetDD;
     @FindBy(xpath = "//ul[@id='select2-Institution-results']/li/ul/li/span")
     public List<WebElement> institucionetOptions;
     @FindBy(xpath = "//ul[@id='select2-Services-results']/li")
     public List<WebElement> sherbimetOptions;
-    @FindBy(xpath = "//select[@data-select2-id='Institution']/following-sibling::span/span/span/ul/li/input")
+    @FindBy(xpath = "//select[@data-select2-id='DerguarTek']/following-sibling::span/span/span/ul/li/input")
     public WebElement institucionetPriteseDD;
     @FindBy(xpath = "//span[@data-select2-id='8139']/span/span/ul/li/input")
     public WebElement sherbimetDD;
@@ -44,7 +44,10 @@ public class StatistikaAplikimeshElements {
     public List<WebElement> statusiOptions;
     @FindBy(xpath = "//span[@class='select2-selection__clear']")
     public WebElement clearButtonX;
-
+    @FindBy(xpath = "//div[@class='loader']")
+    public WebElement divLoader;
+    @FindBy(xpath = "//strong/span")
+    public WebElement institucionOptionsStrong;
     @FindBy(css = ".loader")
     public WebElement loader;
 
@@ -80,5 +83,10 @@ public class StatistikaAplikimeshElements {
     @FindBy(xpath = "//tbody/tr[1]/td[8]")
     public WebElement statusiTABLE;
 
+    //
+    @FindBy(xpath = "//tbody[1]/tr/td[9]")
+    public List<WebElement> dataAplikimit;
+    @FindBy(xpath = "//tbody[1]/tr/td[10]")
+    public List<WebElement> dataEPerfundimitTeAplikimit;
 
 }

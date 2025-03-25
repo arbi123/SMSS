@@ -3,6 +3,7 @@ package StatistikaPages;
 import StatistikaPagesElements.StatistikaAplikimeshElements;
 import Utilities.BaseInformation;
 import com.beust.ah.A;
+import com.fasterxml.jackson.annotation.JacksonAnnotation;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -11,6 +12,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import javax.print.DocFlavor;
+import java.security.Key;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +24,7 @@ public class StatistikaAplikimeshPage {
 
     public void waitUntilNoTableReaload(){
         wait.until(ExpectedConditions.invisibilityOf(page.loader));
+        wait.until(ExpectedConditions.invisibilityOf(page.divLoader));
         wait.until(ExpectedConditions.invisibilityOf(page.loaderTable));
     }
     public void selectTipi(String value){
@@ -40,9 +43,13 @@ public class StatistikaAplikimeshPage {
     public void selektoDaten(String dataFillimit,String dataMbarimit){
         wait.until(ExpectedConditions.elementToBeClickable(page.nisjaEdatesTB));
         page.nisjaEdatesTB.clear();
+        page.nisjaEdatesTB.click();
         page.nisjaEdatesTB.sendKeys(dataFillimit);
         page.fundiEdatesTB.clear();
+        page.fundiEdatesTB.click();
         page.fundiEdatesTB.sendKeys(dataMbarimit);
+        actions.sendKeys(Keys.TAB).perform();
+        waitUntilNoTableReaload();
     }
     public void nrAplikimit(String value){
         page.nrIAplikimit.clear();
@@ -51,6 +58,7 @@ public class StatistikaAplikimeshPage {
         waitUntilNoTableReaload();
     }
     public void selectMinistria(String value){
+        actions.sendKeys(Keys.TAB).perform();
         wait.until(ExpectedConditions.elementToBeClickable(page.ministriaDD));
         page.ministriaDD.click();
         wait.until(ExpectedConditions.visibilityOf(page.minsitriaOptions.getFirst()));
@@ -62,6 +70,10 @@ public class StatistikaAplikimeshPage {
             }
         }
         waitUntilNoTableReaload();
+    }
+    public void clickInsitucionet(){
+        wait.until(ExpectedConditions.elementToBeClickable(page.institucionetDD));
+        page.institucionetDD.click();
     }
     public void selectInstitucionet(String value){
         wait.until(ExpectedConditions.elementToBeClickable(page.institucionetDD));
@@ -95,6 +107,9 @@ public class StatistikaAplikimeshPage {
         select.selectByValue(value);
         waitUntilNoTableReaload();
     }
+    public String strongInstitucionText(){
+    return page.institucionOptionsStrong.getText();
+    }
     public void selectSherbimtet(String value){
         wait.until(ExpectedConditions.elementToBeClickable(page.sherbimetDD));
         page.sherbimetDD.click();
@@ -121,11 +136,30 @@ public class StatistikaAplikimeshPage {
             }
         }
         waitUntilNoTableReaload();
-        Thread.sleep(2000);
+
     }
     public void clearStatus(){
+        waitUntilNoTableReaload();
         wait.until(ExpectedConditions.elementToBeClickable(page.clearButtonX));
         page.clearButtonX.click();
+    }
+    public List<String> datatEaplikimit(){
+        waitUntilNoTableReaload();
+        List<String> list = new ArrayList<>();
+        for (WebElement item: page.dataAplikimit){
+            String text = item.getText();
+            list.add(text);
+        }
+        return list;
+    }
+    public List<String> datatEPerfundimit(){
+        waitUntilNoTableReaload();
+        List<String> list = new ArrayList<>();
+        for (WebElement item: page.dataEPerfundimitTeAplikimit){
+            String text = item.getText();
+            list.add(text);
+        }
+        return list;
     }
 
 
