@@ -7,7 +7,7 @@
     </listeners>
     <test verbose="2" preserve-order="true" name="C:/Users/Arbi.topi/IdeaProjects/TestimTemp/src/test/java">
         <classes>
-            <class name="StatistikaPages.StatistikaAplikimeshPage"/>
+            <class name="StatistikaPagesTest.StatistikaAplikimeshTest"/>
         </classes>
     </test>
 </suite>

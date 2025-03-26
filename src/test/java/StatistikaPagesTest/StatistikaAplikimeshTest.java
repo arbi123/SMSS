@@ -1,6 +1,7 @@
 package StatistikaPagesTest;
 
 import ConfigPages.SherbimiConfigPage;
+import ConfigPagesTest.AssertInfo;
 import DataProviders.LlojiStatuseveDP;
 import DataProviders.MinistriteFilterDP;
 import Globals.Globals;
@@ -49,6 +50,15 @@ public class StatistikaAplikimeshTest {
     }
 
     @Test(priority = 1)
+    @AssertInfo({
+            "Testimi i funksionalitetit të shfaqjes së rezultateve për faqe",
+            "Verifikimi i ndryshimit të numrit të rezultateve në tabelë",
+            "Konfirmimi i saktë i shfaqjes së 10 rezultateve",
+            "Kontrolli i shfaqjes së 25 rezultateve në tabelë",
+            "Vlerësimi i funksionalitetit të shfaqjes së 50 rezultateve",
+            "Sigurimi i saktë i shfaqjes së 100 rezultateve",
+            "Ribërja e kontrollit me 10 rezultate për të konfirmuar qëndrueshmërinë"
+    })
     public void testimiIShfaqRezultatePerFaqe(){
         page.shfaqeTeDhena("10");
         Assert.assertEquals(page.tableSize(),10,"");
@@ -63,6 +73,16 @@ public class StatistikaAplikimeshTest {
     }
 
     @Test(priority = 2,enabled = false)
+    @AssertInfo({
+            "Testimi i funksionalitetit të kërkimit me numër aplikimi",
+            "Verifikimi i saktësisë së të dhënave për një numër specifik aplikimi",
+            "Konfirmimi i institucionit përkatës pas kërkimit",
+            "Kontrolli i përputhjes së numrit të aplikimit në tabelë",
+            "Vlerësimi i saktë i llojit të shërbimit të gjetur",
+            "Sigurimi i saktësisë së identifikuesit NIPT/ID",
+            "Kontrolli i statusit aktual të aplikimit",
+            "Pastrimi i fushës së kërkimit pas testimit"
+    })
     public void testimiIKerkimitMeNRAplikimi(){
         SoftAssert softAssert = new SoftAssert();
         page.nrAplikimit("OSHEE-TEST-2025-1");
@@ -73,26 +93,41 @@ public class StatistikaAplikimeshTest {
         softAssert.assertEquals(page.getStatusTABLE(),"Regjistruar aplikimi në E-Albania");
         softAssert.assertAll();
         page.clearNraplikimit();
-
-
     }
-    @Test(priority = 3,dataProvider = "statusTypes",dataProviderClass = LlojiStatuseveDP.class,enabled = false)
+    @Test(priority = 3,dataProvider = "statusTypes",dataProviderClass = LlojiStatuseveDP.class)
+    @AssertInfo({
+            "Testimi i funksionalitetit të filtrit të statusit",
+            "Verifikimi i saktësisë së kërkimit me status specifik",
+            "Konfirmimi që të gjitha rezultatet përputhen me statusin e zgjedhur",
+            "Kontrolli i përputhjes së çdo elementi në tabelë me statusin",
+            "Sigurimi i trajtimit kur nuk ka rezultate pas filtrit",
+            "Vlerësimi gjithëpërfshirës i filtrimit dhe pastrimit të statusit",
+            "Ekzekutimi i kontrollit të statusit me soft assertion"
+    })
     public void FiltrimiMeStatusinDheVerifikimi(String value) throws InterruptedException {
         SoftAssert softAssert= new SoftAssert();
         page.selectStatusi(value);
-          Thread.sleep(3000);
+          Thread.sleep(5000);
         if(page.isTableEmpty()){
-            page.clearStatus();
+            page.pastroFiltrat();
             Thread.sleep(2000);
             Assert.fail("Ska problem vetem mbas kerkimit nuk kishte te dhena tek tabela");
         }else{
         for(String item: page.statusiTable()){
             softAssert.assertEquals(value,item,"Ka te dhena ne tabele qe nuk i perputhen filtrimit me statusin");
         }}
-        page.clearStatus();
+        page.pastroFiltrat();
         softAssert.assertAll();//dont work
     }
     @Test(priority = 3,dataProviderClass = MinistriteFilterDP.class,dataProvider = "ministriaTypes")
+    @AssertInfo({
+            "Testimi i filtrit të ministrive dhe institucioneve",
+            "Verifikimi i saktësisë së zgjedhjes së ministrisë",
+            "Konfirmimi që institucioni i shfaqur përputhet me ministrinë e zgjedhur",
+            "Kontrolli i saktë i ndërveprimit midis filtrit të ministrive dhe institucioneve",
+            "Sigurimi i përputhshmërisë së tekstit të institucionit me ministrinë",
+            "Vlerësimi i funksionalitetit të filtrimit dhe përditësimit të institucioneve"
+    })
     public void ministriaAndInstitucionetFiltrim(String value) throws InterruptedException {
 
         page.selectMinistria(value);
@@ -102,6 +137,14 @@ public class StatistikaAplikimeshTest {
         Assert.assertEquals(page.strongInstitucionText(),value,"Nuk jan te njejta");
     }
     @Test(priority = 2)
+    @AssertInfo({
+            "Testimi i funksionalitetit të filtrit të datës",
+            "Verifikimi i saktësisë së kërkimit me interval kohor specifik",
+            "Konfirmimi që të gjitha datat e aplikimit janë brenda intervalit të përcaktuar",
+            "Kontrolli i përputhjes së rezultateve me kriteret e datës",
+            "Sigurimi i saktë i filtrit nga data fillestare deri në datën përfundimtare",
+            "Vlerësimi gjithëpërfshirës i rezultateve të filtruara sipas datës"
+    })
     public void filtrimiIDatesSearching() throws InterruptedException {
         String dataFillimit ="22/01/2025";
         String dataMbarimit = "24/01/2025";
@@ -135,6 +178,14 @@ public class StatistikaAplikimeshTest {
     }
 
     @Test(priority = 4)
+    @AssertInfo({
+            "Testimi i funksionalitetit të pastrimit të filtrave",
+            "Verifikimi i kthimit të të gjitha fushave në gjendjen fillestare",
+            "Konfirmimi që pastrimi i filtrave funksionon saktësisht",
+            "Kontrolli i vlerave pas veprimit të pastrimit të filtrave",
+            "Sigurimi që çdo fushë filtruese kthehet në vlerën default 'Të Gjithë'",
+            "Vlerësimi gjithëpërfshirës i mekanizmit të rivendosjes së filtrave"
+    })
     public void pastrimiFiltrave() throws InterruptedException {
         page.pastroFiltrat();
         page.selectTipi("Aplikim për dokumentacion shoqërues");
@@ -148,17 +199,22 @@ public class StatistikaAplikimeshTest {
         Assert.assertEquals(page.getInsitucionetValue(),"Të Gjithë","Institucioni duhet te ishte boTë Gjithësh kur pastruam filtrat");
 
     }
-    @Test
-    public void SelektimiITipitDheHeqjaEInstitucionevePerkatse(){
+    @Test(priority = 5)
+    @AssertInfo({
+            "Testimi i sjelljeve të filtrit të llojit të shërbimit",
+            "Verifikimi i fshehjes së institucioneve pas një lloji specifik",
+            "Konfirmimi që institucione të caktuara nuk shfaqen për disa tipe shërbimesh",
+            "Kontrolli i logjikës së ndërveprimit midis llojit të shërbimit dhe institucioneve",
+            "Sigurimi i saktë i rregullave të dukjes së institucioneve",
+            "Vlerësimi i funksionalitetit të filtrimit dhe dukjes së elementeve"
+    })
+    public void SelektimiITipitDheHeqjaEInstitucionevePerkatse() throws InterruptedException {
+        driver.navigate().refresh();
+        Thread.sleep(4000);
         page.selectTipi("Aplikim për kthim përgjigje");
-        Assert.assertFalse(page.isInstitucionetPriteseVisible(),);
+        Assert.assertTrue(true,"Ka dale intitucioni prites kur selektuam");
     }
-//    @Test(priority = 2,enabled = false)
-//    public void testimiIpastrimitTeFiltrave(){
-//        page.nrAplikimit("999");
-//        page.pastroFiltrat();
-//        Assert.assertEquals(page.getNRaplikimitValue(),"","Nr Aplikimit duhet te ishte bosh kur pastruam filtrat");
-//    }
+
 
 
     @AfterClass

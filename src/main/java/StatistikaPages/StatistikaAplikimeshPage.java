@@ -173,13 +173,6 @@ public class StatistikaAplikimeshPage {
         return page.institucionetPriteseDD.isDisplayed();
     }
 
-
-
-
-
-
-
-
     public List<String> statusiTable(){
         waitUntilNoTableReaload();
         List<String> list = new ArrayList<>();
@@ -235,7 +228,7 @@ public class StatistikaAplikimeshPage {
 
 
     public String getNrAplikimitTable(){
-    return      page.nrAplikimitTABLE.getText();
+    return   page.nrAplikimitTABLE.getText();
     }
     public String getSherbimiTable(){
         return page.sherbimiTABLE.getText();
