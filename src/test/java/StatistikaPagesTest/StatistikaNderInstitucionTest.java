@@ -171,14 +171,14 @@ public class StatistikaNderInstitucionTest {
            "Vlerësimi gjithëpërfshirës i rezultateve të filtruara sipas datës"
    })
    public void filtrimiMeDate() throws InterruptedException {
-//       page.shfaqeTeDhena("10");
-//       page.clickTeTabelaButton();
-//       page.pastroFiltrat();
-//       page.selektoDaten("24/02/2025","26/02/2025");
-//       page.clickLastPage();
-//       Thread.sleep(5000);
-//       page.getAllDataKerkesesNderInstit();
-//       page.getAfatiKthimPergjigje();
+       page.shfaqeTeDhena("10");
+       page.clickTeTabelaButton();
+       page.pastroFiltrat();
+       page.selektoDaten("24/02/2025","26/02/2025");
+       page.clickLastPage();
+       Thread.sleep(5000);
+       page.getAllDataKerkesesNderInstit();
+       page.getAfatiKthimPergjigje();
    }
 
     @AfterClass

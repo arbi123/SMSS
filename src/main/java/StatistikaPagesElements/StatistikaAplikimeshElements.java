@@ -83,7 +83,7 @@ public class StatistikaAplikimeshElements {
     @FindBy(xpath = "//tbody/tr[1]/td[8]")
     public WebElement statusiTABLE;
 
-    //
+
     @FindBy(xpath = "//tbody[1]/tr/td[9]")
     public List<WebElement> dataAplikimit;
     @FindBy(xpath = "//tbody[1]/tr/td[10]")
