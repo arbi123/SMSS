@@ -56,6 +56,8 @@ public class ListaEKlienteve {
     public WebElement poButton;
     @FindBy(xpath = "//td[normalize-space()='Nuk u gjetën klientë.']")
     public WebElement skaKliente;
+    @FindBy(xpath = "Tset")
+    public WebElement tset;
 
 
 
