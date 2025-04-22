@@ -45,19 +45,6 @@ public class BaseInformation {
                     ChromeOptions options = new ChromeOptions();
                     options.addArguments("--remote-allow-origins=*");
 
-                    String downloadFilepath = "C:\\Users\\Arbi.topi\\Downloads";
-                    Map<String, Object> prefs = new HashMap<>();
-                    prefs.put("download.default_directory", downloadFilepath);
-                    prefs.put("download.prompt_for_download", false);
-                    prefs.put("download.directory_upgrade", true);
-                    prefs.put("safebrowsing.enabled", true);
-
-
-                    // Additional security bypasses
-                    options.setExperimentalOption("prefs", prefs);
-                    options.addArguments("--allow-running-insecure-content");
-                    options.addArguments("--unsafely-treat-insecure-origin-as-secure=http://213.32.46.87:6070/");
-                    options.setAcceptInsecureCerts(true);
                     System.setProperty("webdriver.chrome.driver", "C:\\Users\\Arbi.topi\\IdeaProjects\\TestimTemp\\src\\main\\resources\\chromedriver.exe");
                     driver = new ChromeDriver(options);
                     driver.manage().window().maximize();

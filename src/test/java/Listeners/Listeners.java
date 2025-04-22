@@ -16,8 +16,8 @@ import java.io.IOException;
 
 public class Listeners extends BaseInformation implements ITestListener {
 
-    ExtentTest test;
-    ExtentReports extent = ExtentReporterNG.getReportObject();
+    static ExtentTest test;
+    static ExtentReports extent = ExtentReporterNG.getReportObject();
     @Override
     public void onFinish(ITestContext Result)
     {
@@ -31,8 +31,15 @@ public class Listeners extends BaseInformation implements ITestListener {
         extent.setSystemInfo("Operating System", System.getProperty("os.name"));
         extent.setSystemInfo("User", System.getProperty("user.name"));
         extent.setSystemInfo("Environment", "QA"); // or dynamically retrieve from BaseInformation if available
+
+    }
+    public ExtentTest getTest() {
+        return test;
     }
 
+    public static ExtentReports getExtentReports() {
+        return extent;
+    }
 
     @Override
     public void onTestFailure(ITestResult Result)
@@ -78,7 +85,16 @@ public class Listeners extends BaseInformation implements ITestListener {
                 params.append(param).append(" ");
             }
             test.log(Status.INFO, params.toString().trim());
+
         }
+
+        String filepath = null;
+        try {
+            filepath = getScreenShot();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        test.addScreenCaptureFromPath(filepath,result.getName());
     }
 
     @Override
